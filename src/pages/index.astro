@@ -17,25 +17,10 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <main id="main-content">
     <section id="hero">
       <h1 class="mr-2">Naoya Sato</h1>
-
-      <p>
-        I'm a software engineer based in Japan. I write about web development,
-        JavaScript, TypeScript, React, and more.
-      </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
-          className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
-          href="https://dev.classmethod.jp/author/sato-naoya/"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
           <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
             <Socials />
           </div>
         )
@@ -43,26 +28,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     </section>
 
     <Hr />
-
-    <!-- {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data }) => (
-                <Card
-                  href={`/posts/${slugify(data)}`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          <Hr />
-        </>
-      )
-    } -->
 
     <section id="recent-posts">
       <h2>Recent Posts</h2>

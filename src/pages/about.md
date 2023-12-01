@@ -3,24 +3,26 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-### Naoya Sato
+## Name
 
-Application Engineer@Classmethod, Inc.
+Sato Naoya (佐藤直哉)
 
-## Tech Skill
+## Jobs
 
-### Programming Language
+- Application Engineer [コントレア株式会社](https://www.contrea.jp/) 2023/06 -
+- Application Engineer [クラスメソッド株式会社](https://classmethod.jp/) 2019/04 -
+- Programmer [株式会社アドウイック](https://www.adwic.co.jp/) 2014/04 - 2019/03
 
-- TypeScript / JavaScript
-- Python
-- Kotlin
-- Java
+## Links
 
-### Technology Stack
+- [Zenn](https://zenn.dev/briete)
+- [DevelopersIO](https://dev.classmethod.jp/author/sato-naoya/)
 
-- AWS
-- Node.js
-- React
-- Vue
-- Spring Boot
+## Resume
 
+https://findy-code.io/share_profiles/8DdhiBE8UoUqT
+
+## Awards
+
+- [2023 Japan AWS All Certifications Engineer](https://aws.amazon.com/jp/blogs/psa/2023-japan-aws-all-certifications-engineers/)
+- [2021 APN AWS Top Engineer](https://aws.amazon.com/jp/blogs/psa/apn-engineers-award-2021/)
