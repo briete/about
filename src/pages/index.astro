@@ -3,32 +3,13 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
-import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
-import Socials from "@components/Socials.astro";
 import { sortedPosts } from "@utils/getSortedPosts";
-import { SOCIALS } from "@config";
-
-const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
 <Layout>
   <Header />
   <main id="main-content">
-    <section id="hero">
-      <h1 class="mr-2">Naoya Sato</h1>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
     <section id="recent-posts">
       <h2>Recent Posts</h2>
       <ul>
@@ -77,12 +58,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   #hero p {
     @apply my-2;
-  }
-  .social-wrapper {
-    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-  }
-  .social-links {
-    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
   }
 
   /* ===== Featured & Recent Posts Sections ===== */
