@@ -1,11 +1,12 @@
 ---
 import { SITE } from "@config";
 import Posts from "@layouts/Posts.astro";
-import { sortedPosts } from "@utils/getSortedPosts";
+import { build } from "@utils/builder";
 import getPageNumbers from "@utils/getPageNumbers";
 
-const totalPages = getPageNumbers(sortedPosts.length);
-const paginatedPosts = sortedPosts.slice(0, SITE.postPerPage);
+const posts = await build();
+const totalPages = getPageNumbers(posts.length);
+const paginatedPosts = posts.slice(0, SITE.postPerPage);
 ---
 
 <Posts posts={paginatedPosts} pageNum={1} totalPages={totalPages.length} />

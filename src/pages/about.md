@@ -24,5 +24,6 @@ title: "About"
 
 ## Awards
 
+- [2024 Japan AWS All Certifications Engineer](https://aws.amazon.com/jp/blogs/psa/2024-japan-aws-all-certifications-engineers/)
 - [2023 Japan AWS All Certifications Engineer](https://aws.amazon.com/jp/blogs/psa/2023-japan-aws-all-certifications-engineers/)
 - [2021 APN AWS Top Engineer](https://aws.amazon.com/jp/blogs/psa/apn-engineers-award-2021/)

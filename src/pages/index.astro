@@ -4,7 +4,9 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Card from "@components/Card";
-import { sortedPosts } from "@utils/getSortedPosts";
+import { build } from "@utils/builder";
+
+const posts = await build();
 ---
 
 <Layout>
@@ -14,7 +16,7 @@ import { sortedPosts } from "@utils/getSortedPosts";
       <h2>Recent Posts</h2>
       <ul>
         {
-          sortedPosts.map(
+          posts.map(
             (post, index) =>
               index < 4 && (
                 <Card
