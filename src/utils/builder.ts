@@ -8,11 +8,11 @@ export const urlList = [
 ];
 
 export type Item = {
-    title: string;
-    url: string;
-    date: string;
-    action: string;
-}
+  title: string;
+  url: string;
+  date: string;
+  action: string;
+};
 
 export type RSSItem = {
   title: string;
@@ -29,7 +29,7 @@ export async function build(): Promise<Item[]> {
     feed.push(...(items as any));
   }
 
-  const allRows = feed.map((item) => {
+  const allRows = feed.map(item => {
     return {
       date: item.date,
       title: item.title,
