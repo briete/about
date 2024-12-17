@@ -2,20 +2,14 @@ import { LOCALE } from "@config";
 
 export interface Props {
   datetime: string | Date;
-  size?: "sm" | "lg";
   className?: string;
   action: string;
 }
 
-export default function Datetime({
-  datetime,
-  size = "sm",
-  className,
-  action,
-}: Props) {
+export default function Datetime({ datetime, className, action }: Props) {
   return (
-    <div className={`flex basis-1 space-x-2 opacity-80 ${className}`}>
-      <span className={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
+    <div className={`flex ${className}`}>
+      <span className="text-xs italic">
         <FormattedDatetime datetime={datetime} />
         <span> {action}</span>
       </span>
