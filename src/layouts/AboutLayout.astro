@@ -17,7 +17,7 @@ const { frontmatter } = Astro.props;
 <Layout title={`${frontmatter.title} | ${SITE.title}`}>
   <Header activeNav="resume" />
   <main id="main-content">
-    <section id="about" class="prose mb-28 max-w-3xl prose-img:border-0">
+    <section id="resume" class="prose prose-sm mb-28 max-w-3xl prose-img:border-0">
       <slot />
     </section>
   </main>

@@ -2,11 +2,6 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Parser from "rss-parser";
 
-export const urlList = [
-  "https://zenn.dev/briete/feed",
-  "https://dev.classmethod.jp/author/sato-naoya/feed/",
-];
-
 export type Item = {
   title: string;
   url: string;
@@ -14,11 +9,62 @@ export type Item = {
   action: string;
 };
 
-export type RSSItem = {
-  title: string;
-  url: string;
-  date: string;
-};
+export type RSSItem = Pick<Item, "title" | "url" | "date">;
+
+export const urlList = [
+  "https://zenn.dev/briete/feed",
+  "https://dev.classmethod.jp/author/sato-naoya/feed/",
+  "https://speakerdeck.com/briete.rss",
+];
+
+export const fixedItems: Item[] = [
+  {
+    title:
+      "クラスメソッドメンバーズポータルのバックエンドAPIをリプレイスしました",
+    url: "https://dev.classmethod.jp/articles/classmethod-members-backend-replace/",
+    date: "2024-06-18",
+    action: `Posted on dev.classmethod.jp`,
+  },
+  {
+    title:
+      "[資料公開] Cloudflare Workersのユースケースと開発方法というタイトルで登壇しました #devio2023",
+    url: "https://dev.classmethod.jp/articles/devio2023-cloudflare-workers-usecase/",
+    date: "2023-07-15",
+    action: `Posted on dev.classmethod.jp`,
+  },
+  {
+    title: "ユーザーをAuth0に自動マイグレーションする",
+    url: "https://dev.classmethod.jp/articles/oauth2-user-auth0-auto-migration/",
+    date: "2023-03-22",
+    action: `Posted on dev.classmethod.jp`,
+  },
+  {
+    title:
+      "KotlinとSpring Security 6.xを使って、Introspection Endpointでトークンを検証するOAuth2のリソースサーバ−を実装する",
+    url: "https://dev.classmethod.jp/articles/kotlin-spring-security-6-x-oauth2-token-introspection/",
+    date: "2023-03-01",
+    action: `Posted on dev.classmethod.jp`,
+  },
+  {
+    title:
+      "Cloudflare Workers + Hono + Cloudflare D1を使って、CDNエッジのみで動くWebAPIを作ってみた",
+    url: "https://dev.classmethod.jp/articles/getting-started-cloudflare-workers-hono-cloudflare-d1/",
+    date: "2022-12-23",
+    action: `Posted on dev.classmethod.jp`,
+  },
+  {
+    title: "Auth0 を使って ID Token と Access Token の違いをざっくり理解する",
+    url: "https://dev.classmethod.jp/articles/auth0-access-token-id-token-difference/",
+    date: "2022-09-07",
+    action: `Posted on dev.classmethod.jp`,
+  },
+  {
+    title: "最近の業務での AWS サーバーレス開発を振り返ってみた",
+    url: "https://dev.classmethod.jp/articles/serverless-develop-review/",
+    date: "2022-05-16",
+    action: `Posted on dev.classmethod.jp`,
+  },
+];
 
 const parser = new Parser();
 
@@ -37,6 +83,8 @@ export async function build(): Promise<Item[]> {
       action: `Posted on ${getHostFromURL(item.url)}`,
     };
   });
+
+  allRows.push(...fixedItems);
 
   return allRows.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -60,39 +108,9 @@ async function fetchFeedItems(url: string) {
   }
 }
 
-/*
-  catnose99/timeline (catnose99/timeline)
-  Copyright 2021 catnose99
-  https://opensource.org/licenses/mit-license.php
-*/
 dayjs.extend(relativeTime);
 
 export function getHostFromURL(url: string) {
   const urlObj = new URL(url);
   return urlObj.hostname;
 }
-
-export function getFaviconSrcFromHostname(hostname: string) {
-  return `https://www.google.com/s2/favicons?sz=128&domain=${hostname}`;
-}
-
-export function formatDate(dateText: string, format = "YYYY-MM-DD") {
-  const date = dayjs(dateText);
-  const isRecent = Math.abs(date.diff(Date.now(), "month")) < 6;
-
-  return isRecent ? date.fromNow() : date.format(format);
-}
-
-export const groupByKey = <K, V>(
-  array: readonly V[],
-  getKeyFunc: (cur: V, idx: number, src: readonly V[]) => K
-): [K, V[]][] =>
-  Array.from(
-    array.reduce((map, cur, idx, src) => {
-      const key = getKeyFunc(cur, idx, src);
-      const items = map.get(key);
-      if (items) items.push(cur);
-      else map.set(key, [cur]);
-      return map;
-    }, new Map<K, V[]>())
-  );
