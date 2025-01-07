@@ -19,7 +19,7 @@ title: Resume
   - VPC、EC2、RDS、ECSなどのネットワーク構築・運用
   - Terraformを使用した自動化
 - 受託開発に伴うクライアントとの折衝、プロジェクト管理
-  - お客様側のプロダクトマネージャ、エンジニアとの折衝
+  - お客様のプロダクトマネージャ、エンジニアとの折衝
   - プロジェクト管理、スケジュール管理
 
 ## 職歴
@@ -28,11 +28,18 @@ title: Resume
 
 #### AWS事業本部サービス開発室
 
+バックエンドエンジニアとして自社サービスの開発を担当。
+
 - [クラスメソッドメンバーズ](https://classmethod.jp/aws/services/members/)の開発、保守、運用
-  - 受託開発を行う部署から自社サービスの開発を行っている部署に移動
   - 技術選定、仕様策定、設計、開発
   - Kotlin / Spring Boot / Next.js / Rust
   - AWS
+- 達成したこと
+  - Spring Boot 2.x から 3.x へのアップデート
+  - Java から Kotlin へのリプレイス
+  - ユニットテスト、インテグレーションテスト、E2Eテストなどのテスト環境の整備
+- 参考URL
+  - https://dev.classmethod.jp/articles/classmethod-members-backend-replace/
 
 #### CX事業本部MAD事業部
 
@@ -40,12 +47,10 @@ title: Resume
 
 - オンライン挙式動画配信サービスの受託開発
   - Vimeoを使用した結婚式の動画配信サービスの開発
-  - お客様側のプロダクトマネージャ、エンジニアとの折衝、プロジェクト管理、設計、開発
-  - TypeScript / Node.js / Nuxt / Vue.js
+  - TypeScript / Node.js / Nuxt
   - AWS
 - Webクーポンサービスの受託開発
   - デジタルクーポンの管理、配信、店舗利用サービスの開発
-  - お客様側のプロダクトマネージャ、エンジニアとの折衝、プロジェクト管理、設計、開発
   - Ruby on Railsからの移行プロジェクト
   - TypeScript / Node.js / React / GraphQL
 - デジタルギフトサービスの受託開発
@@ -53,18 +58,18 @@ title: Resume
   - TypeScript / Node.js / Java
 - IoT機器管理、エッジデバイスのアプリケーションデプロイの仕組みの開発
   - 小売店舗で利用するカメラデバイスの管理、エッジデバイスにおけるアプリケーションデプロイの仕組みの開発
-  - Python / AWS IoT / Greengrass / AWS Lambda
+  - Python / AWS IoT Greengrass / AWS Lambda
 
 ### スタートアップ2（2024/06〜）
 
 - 副業・業務委託のバックエンドエンジニアとして、スタートアップのプロダクト開発に従事
-  - TypeScript / Node.js / Next.js
+  - TypeScript / Node.js / Hono / Next.js
   - Cloudflare Workers
 
 ### スタートアップ1（2023/06〜）
 
 - 副業・業務委託のバックエンドエンジニアとして、スタートアップのプロダクト開発に従事
-  - TypeScript/ Node.js / Nuxt, Vue.js
+  - TypeScript / Node.js / Nuxt
   - Google Cloud
 
 ## Blog
