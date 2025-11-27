@@ -1,31 +1,501 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import Card from "@components/Card";
-import { build } from "@utils/builder";
+import {
+  Award,
+  Cloud,
+  Code,
+  ExternalLink,
+  FileText,
+  Flame,
+  Github,
+} from "lucide-astro";
 
-const posts = await build();
+type Level = "Expert" | "Advanced" | "Intermediate";
+
+const heroLinks = [
+  {
+    href: "https://github.com/briete",
+    label: "GitHub",
+    icon: Github,
+  },
+  {
+    href: "https://zenn.dev/briete",
+    label: "Zenn",
+    icon: ExternalLink,
+  },
+  {
+    href: "https://dev.classmethod.jp/author/sato-naoya/",
+    label: "DevelopersIO",
+    icon: FileText,
+  },
+];
+
+const techStack = {
+  languages: [
+    {
+      name: "Kotlin",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+      level: "Expert",
+    },
+    {
+      name: "Java",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      level: "Expert",
+    },
+    {
+      name: "Spring Boot",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+      level: "Expert",
+    },
+    {
+      name: "TypeScript",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      level: "Expert",
+    },
+    {
+      name: "Node.js",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      level: "Expert",
+    },
+    {
+      name: "React",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "Next.js",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "Hono",
+      icon: "hono",
+      level: "Intermediate",
+    },
+  ],
+  cloud: [
+    {
+      name: "AWS",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+      level: "Expert",
+    },
+    {
+      name: "Google Cloud",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "Cloudflare",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "Terraform",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+      level: "Advanced",
+    },
+  ],
+};
+
+const levelStyles: Record<Level, string> = {
+  Expert: "bg-black text-white border-black",
+  Advanced: "bg-neutral-100 text-neutral-700 border-neutral-200",
+  Intermediate: "text-neutral-500 border-transparent",
+};
+
+type Achievement = {
+  text: string;
+  link?: { href: string; label: string };
+};
+
+type Project = {
+  title: string;
+  description: string;
+  techStack: string[];
+};
+
+type Position = {
+  title: string;
+  period: string;
+  description: string;
+  achievements?: Achievement[];
+  projects?: Project[];
+  techStack?: string[];
+};
+
+type WorkExperience = {
+  company: string;
+  period?: string;
+  positions: Position[];
+  isCurrent: boolean;
+};
+
+const workExperiences: WorkExperience[] = [
+  {
+    company: "クラスメソッド株式会社",
+    period: "2019.04 — Present",
+    isCurrent: true,
+    positions: [
+      {
+        title: "クラウド事業本部 サービス開発室",
+        period: "2022.10 — Present",
+        description:
+          "バックエンドエンジニアとして自社サービス「クラスメソッドメンバーズ」の開発、保守、運用を担当。技術選定から仕様策定、設計、開発までを一貫して遂行。",
+        projects: [
+          {
+            title: "バックエンドAPIのリプレイス",
+            description: "Spring Boot 2.x から 3.x へのアップデートやJavaからKotlinへのリプレイスを行いました。",
+            techStack: ["Spring Boot", "Kotlin", "Java"],
+          },
+          {
+            title: "ユニット・インテグレーション・E2Eテスト環境の整備",
+            description: "ユニット・インテグレーション・E2Eテスト環境の整備を行いました。",
+            techStack: ["Java", "Spring Boot"],
+          },
+        ],
+      },
+      {
+        title: "CX事業本部 MAD事業部",
+        period: "2019.04 — 2022.09",
+        description:
+          "MAD (Modern Application Development)事業を通じて、顧客プロダクトのモダナイズや新規開発を担当。",
+        projects: [
+          {
+            title: "動画配信サービスの受託開発",
+            description: "Vimeoを使用した動画配信サービスの開発",
+            techStack: ["TypeScript", "Node.js", "Nuxt", "Vue.js", "AWS"],
+          },
+          {
+            title: "Webクーポンサービスの受託開発",
+            description: "デジタルクーポンの管理、配信、店舗利用サービスの開発",
+            techStack: ["TypeScript", "Node.js", "React", "GraphQL", "AWS"],
+          },
+          {
+            title: "デジタルギフトサービスの受託開発",
+            description: "POSシステムと連携するデジタルギフト連携サービスの開発",
+            techStack: ["TypeScript", "Node.js", "Java", "AWS"],
+          },
+          {
+            title: "IoT機器管理システムのPoC開発",
+            description:
+              "小売店舗向けカメラデバイス管理、エッジへのアプリデプロイ機構の開発",
+            techStack: ["AWS", "Python", "AWS IoT Greengrass"],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    company: "業務委託（副業）",
+    isCurrent: false,
+    positions: [
+      {
+        title: "人材系スタートアップ企業",
+        period: "2024.07 — Present",
+        description:
+          "人材系SaaSの開発支援",
+        techStack: ["Cloudflare", "Hono", "Next.js", "React", "TypeScript"],
+      },
+      {
+        title: "医療系スタートアップ企業",
+        period: "2023.06 — Present",
+        description:
+          "医療系SaaSの開発支援",
+        techStack: ["Google Cloud", "Firebase", "Nuxt", "Vue.js", "TypeScript"],
+      },
+    ],
+  },
+  {
+    company: "株式会社アドウイック",
+    isCurrent: false,
+    period: "2014.04 — 2019.04",
+    positions: [
+      {
+        title: "一般事業部 開発課",
+        period: "2014.04 — 2019.04",
+        description:
+          "プログラマとして受託開発や自社パッケージの販売管理システムの開発、新規事業の立ち上げを担当",
+        projects: [
+            {
+            title: "在庫管理システムの設計・開発",
+            description: "iPhoneに装着するバーコードリーダーと連携した在庫管理システムの設計・開発を担当しました。UI設計、技術選定、設計、開発を一貫して担当",
+            techStack: ["Ionic Framework", "Angular", "DynamoDB", "Lambda"],
+          },
+          {
+            title: "水産加工会社向けの基幹システムのリプレイス",
+            description:
+              "水産加工会社向けの基幹システムのリプレイスを担当",
+            techStack: [".NET Framework", "VB.NET", "SQL Server"],
+          },
+          {
+            title: "販売管理システムの設計・開発",
+            description:
+              "プログラマとして自社パッケージの販売管理システムの開発を担当",
+            techStack: [".NET Framework", "ASP.NET", "C#", "SQL Server"],
+          },
+        ],
+      },
+    ],
+  },
+];
 ---
 
-<Layout>
-  <Header />
-  <main id="main-content">
-    <section id="posts">
-      <ul>
+<Layout
+  title="About | briete.dev"
+  description="Cloud Native Backend Architect. Kotlin/Spring、TypeScript、AWSで堅牢なシステムを設計・実装します。"
+  currentPage="about"
+>
+  <main class="mx-auto max-w-xl px-6 pb-20 pt-28">
+    <section id="about" class="mb-16">
+      <h1 class="mb-6 text-3xl font-extrabold leading-tight tracking-tight">
+        ID: briete
+      </h1>
+      <p class="mb-8 text-sm leading-relaxed text-neutral-600">
+        クラウドネイティブなWebアプリケーション開発を専門とするアプリケーションエンジニア。
+        受託開発から自社のプロダクト開発まで、技術選定・設計・実装・運用の全フェーズを担当。
+        堅牢でスケーラブルなクラウドアーキテクチャの構築を得意とします。
+      </p>
+      <div class="flex flex-wrap items-center gap-4">
         {
-          posts.map(
-            (post) =>
-              (
-                <Card
-                  href={post.url}}
-                  frontmatter={post}
-                />
-              )
-          )
+          heroLinks.map(({ href, label, icon: Icon }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1.5 text-xs font-bold transition-all hover:border-black hover:bg-black hover:text-white"
+            >
+              <Icon size={14} />
+              {label}
+            </a>
+          ))
         }
-      </ul>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <div class="rounded-2xl border border-neutral-100 bg-neutral-50 p-6">
+        <div class="mb-6 flex items-center gap-2 text-neutral-900">
+          <Award size={20} />
+          <h2 class="text-lg font-bold">Certifications</h2>
+        </div>
+
+        <div class="space-y-8">
+          <div>
+            <h3 class="mb-3 text-sm font-bold text-neutral-900">情報処理技術者試験</h3>
+            <div class="flex flex-wrap gap-2">
+              {
+                [
+                  "データベーススペシャリスト試験", 
+                  "応用情報技術者試験", 
+                  "基本情報技術者試験"
+                ].map(cert => (
+                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600">
+                    {cert}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+
+          <div>
+            <div class="mb-3 flex items-center justify-between">
+              <h3 class="text-sm font-bold text-neutral-900">AWS認定資格</h3>
+            </div>
+
+            <div class="mb-4 space-y-1">
+              <p class="text-xs text-neutral-500">
+                <span class="font-bold text-neutral-700">Japan AWS All Certifications Engineer</span> (2022-2025)
+              </p>
+              <p class="text-xs text-neutral-500">
+                <span class="font-bold text-neutral-700">APN AWS Top Engineer</span> (2021)
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {
+                [
+                  "Solutions Architect - Professional",
+                  "DevOps Engineer - Professional",
+                  "Security - Specialty",
+                  "Advanced Networking - Specialty",
+                ].map(cert => (
+                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600">
+                    AWS Certified {cert}
+                  </span>
+                ))
+              }
+              <span class="rounded border border-neutral-200 bg-neutral-100 px-2.5 py-1.5 text-[10px] font-medium text-neutral-400">
+                + 8 Others
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="mb-16">
+      <h2 class="mb-6 text-xs font-bold uppercase tracking-widest text-neutral-400">Skills</h2>
+      <div class="space-y-4">
+        <div class="rounded-xl border border-neutral-200 p-5 transition-colors hover:border-neutral-400">
+          <div class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2">
+            <Cloud size={16} class="text-neutral-500" />
+            <h3 class="text-sm font-bold">Cloud & Infrastructure</h3>
+          </div>
+          <div class="space-y-3">
+            {
+              techStack.cloud.map(tech => (
+                <div class="flex items-center justify-between text-xs">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src={tech.icon}
+                      alt={tech.name}
+                      class="h-5 w-5 object-contain"
+                      loading="lazy"
+                      width="20"
+                      height="20"
+                    />
+                    <span class="font-mono font-medium text-neutral-700">{tech.name}</span>
+                  </div>
+                  <span class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}>
+                    {tech.level}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-neutral-200 p-5 transition-colors hover:border-neutral-400">
+          <div class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2">
+            <Code size={16} class="text-neutral-500" />
+            <h3 class="text-sm font-bold">Languages & Frameworks</h3>
+          </div>
+          <div class="space-y-3">
+            {
+              techStack.languages.map(tech => (
+                <div class="flex items-center justify-between text-xs">
+                  <div class="flex items-center gap-3">
+                    {tech.icon === "hono" ? (
+                      <span class="flex h-5 w-5 items-center justify-center text-orange-500">
+                        <Flame size={18} />
+                      </span>
+                    ) : (
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        class="h-5 w-5 object-contain"
+                        loading="lazy"
+                        width="20"
+                        height="20"
+                      />
+                    )}
+                    <span class="font-mono font-medium text-neutral-700">{tech.name}</span>
+                  </div>
+                  <span class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}>
+                    {tech.level}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="mb-20">
+      <h2 class="mb-8 text-xs font-bold uppercase tracking-widest text-neutral-400">Work</h2>
+      <div class="ml-2 space-y-12 border-l border-neutral-200">
+        {
+          workExperiences.map(exp => (
+            <div class="relative pl-6">
+              <span
+                class={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border border-white ${exp.isCurrent ? "bg-black" : "bg-neutral-300"}`}
+              />
+              {exp.period ? (
+                <div class="mb-6">
+                  <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
+                    <h3 class="text-base font-bold">{exp.company}</h3>
+                    <span class="font-mono text-xs text-neutral-400">{exp.period}</span>
+                  </div>
+                </div>
+              ) : (
+                <h3 class="mb-4 text-sm font-bold text-neutral-900">{exp.company}</h3>
+              )}
+              <div class={`grid ${exp.period ? "gap-6" : "gap-4"}`}>
+                {exp.positions.map(pos => (
+                  <div
+                    class={`rounded-lg border border-neutral-200 transition-colors hover:border-neutral-400 ${exp.period ? "bg-white p-5" : "p-4"}`}
+                  >
+                    <div class={`flex items-start justify-between ${pos.achievements ? "mb-3" : "mb-2"}`}>
+                      <h4 class="text-xs font-bold text-neutral-900">{pos.title}</h4>
+                      <span class="font-mono text-[10px] text-neutral-400">{pos.period}</span>
+                    </div>
+                    <p class={`text-xs text-neutral-600 ${pos.achievements ? "mb-4 leading-relaxed" : pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}>
+                      {pos.description}
+                    </p>
+                    {pos.achievements && (
+                      <div class="mb-4 rounded-md border border-neutral-100 bg-neutral-50 p-3">
+                        <h5 class="mb-2 text-[10px] font-bold text-neutral-700">達成したこと</h5>
+                        <ul class="list-inside list-disc space-y-1.5 text-[11px] text-neutral-600">
+                          {pos.achievements.map(achievement => (
+                            <li>
+                              {achievement.text}
+                              {achievement.link && (
+                                <a
+                                  href={achievement.link.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="ml-1 inline-flex items-center text-neutral-400 transition-colors hover:text-black"
+                                >
+                                  <ExternalLink size={10} class="mr-0.5" /> {achievement.link.label}
+                                </a>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {pos.projects && (
+                      <div class="space-y-5 text-neutral-600">
+                        {pos.projects.map(project => (
+                          <div>
+                            <h5 class="text-[11px] font-bold text-neutral-900">{project.title}</h5>
+                            <p class="mb-2 text-[10px] text-neutral-600">{project.description}</p>
+                            <div class="flex flex-wrap gap-1">
+                              {project.techStack.map(tech => (
+                                <span class="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[9px] font-medium text-neutral-600">
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {pos.techStack && !pos.achievements && !pos.projects && (
+                      <div class="flex flex-wrap gap-1">
+                        {pos.techStack.map(tech => (
+                          <span class="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[9px] font-medium text-neutral-600">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {pos.techStack && pos.achievements && (
+                      <div class="flex flex-wrap gap-1.5 border-t border-neutral-100 pt-3">
+                        {pos.techStack.map(tech => (
+                          <span class="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[9px] font-medium text-neutral-600">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </section>
   </main>
-  <Footer />
 </Layout>

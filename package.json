@@ -27,15 +27,15 @@
     "remark-toc": "^9.0.0",
     "rss-parser": "^3.13.0",
     "satori": "^0.10.8",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@astrojs/react": "^4.1.2",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/tailwind": "^5.1.4",
     "@divriots/jampack": "^0.20.2",
     "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/vite": "^4.0.0",
     "@types/github-slugger": "^1.3.0",
     "@types/react": "^19.0.2",
     "@typescript-eslint/parser": "^6.7.3",
@@ -46,6 +46,7 @@
     "eslint-plugin-astro": "^0.29.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
+    "lucide-astro": "^0.555.0",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.0",
     "prettier-plugin-tailwindcss": "^0.5.4",
@@ -62,5 +63,5 @@
       "prettier --plugin-search-dir=. --write"
     ]
   },
-  "packageManager": "pnpm@8.6.1+sha1.435b3c83c7de5c455ad80fd63ee7ecf3b67b949b"
+  "packageManager": "pnpm@10.23.0"
 }

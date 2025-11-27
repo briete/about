@@ -1,0 +1,45 @@
+---
+import { Mail } from "lucide-astro";
+
+export interface Props {
+  showContact?: boolean;
+  showBackLink?: boolean;
+}
+
+const { showContact = false, showBackLink = false } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  id={showContact ? "contact" : undefined}
+  class={`border-t border-neutral-100 px-6 pb-8 pt-10 text-center ${showBackLink ? "mt-20" : ""}`}
+>
+  {
+    showContact && (
+      <>
+        <p class="mb-2 text-xs text-neutral-500">お仕事のご依頼・ご相談などはこちらまで</p>
+        <a
+          href="mailto:contact@briete.me"
+          class="mb-6 inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-70"
+        >
+          <Mail size={14} />
+          contact@briete.me
+        </a>
+      </>
+    )
+  }
+  {
+    showBackLink && (
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-black"
+      >
+        ← Back to Home
+      </a>
+    )
+  }
+  <p class={`text-[10px] text-neutral-400 ${showBackLink ? "mt-4" : ""}`}>
+    &copy; {currentYear} briete.dev
+  </p>
+</footer>
+

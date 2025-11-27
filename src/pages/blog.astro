@@ -1,0 +1,139 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { ExternalLink, Rss } from "lucide-astro";
+import { build, getHostFromURL } from "@utils/builder";
+import dayjs from "dayjs";
+
+const posts = await build();
+
+// Group posts by year
+const postsByYear = posts.reduce(
+  (acc, post) => {
+    const year = dayjs(post.date).format("YYYY");
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(post);
+    return acc;
+  },
+  {} as Record<string, typeof posts>
+);
+
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
+
+const getIconForHost = (url: string) => {
+  const host = getHostFromURL(url);
+  if (host.includes("zenn.dev")) return "zenn";
+  if (host.includes("dev.classmethod.jp")) return "devio";
+  if (host.includes("speakerdeck")) return "speakerdeck";
+  return "default";
+};
+---
+
+<Layout
+  title="Blog | briete.dev"
+  description="brieteの技術ブログ・登壇資料一覧。Zenn、DevelopersIO、SpeakerDeckでの発信をまとめています。"
+  currentPage="blog"
+>
+  <main class="mx-auto max-w-xl px-6 pb-20 pt-28">
+    <section class="mb-16">
+      <div class="mb-8 flex items-center gap-3">
+        <div class="rounded-lg bg-neutral-100 p-2">
+          <Rss size={20} class="text-neutral-600" />
+        </div>
+        <div>
+          <h1 class="text-2xl font-extrabold tracking-tight">Blog & Slides</h1>
+          <p class="text-xs text-neutral-500">技術ブログ・登壇資料</p>
+        </div>
+      </div>
+      <div class="mb-6 flex flex-wrap gap-2">
+        <span class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+          Zenn
+        </span>
+        <span class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600">
+          <span class="h-2 w-2 rounded-full bg-orange-500"></span>
+          DevelopersIO
+        </span>
+        <span class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600">
+          <span class="h-2 w-2 rounded-full bg-sky-500"></span>
+          SpeakerDeck
+        </span>
+      </div>
+    </section>
+
+    <section>
+      <div class="ml-2 space-y-10 border-l border-neutral-200">
+        {
+          years.map((year, yearIndex) => (
+            <div class="relative pl-6">
+              <span
+                class={`absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full border border-white ${
+                  yearIndex === 0 ? "bg-black" : "bg-neutral-300"
+                }`}
+              />
+              <div class="mb-4 flex items-center gap-2">
+                <h2 class="font-mono text-sm font-bold text-neutral-900">{year}</h2>
+                <span class="font-mono text-[10px] text-neutral-400">
+                  {postsByYear[year].length} posts
+                </span>
+              </div>
+              <div class="space-y-3">
+                {postsByYear[year].map(post => {
+                  const iconType = getIconForHost(post.url);
+                  return (
+                    <a
+                      href={post.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="group block rounded-lg border border-neutral-200 bg-white p-4 transition-all hover:border-neutral-400 hover:shadow-sm"
+                    >
+                      <div class="mb-2 flex items-start justify-between gap-3">
+                        <h3 class="text-sm font-medium leading-snug text-neutral-900 group-hover:text-black">
+                          {post.title}
+                        </h3>
+                        <ExternalLink
+                          size={14}
+                          class="mt-0.5 shrink-0 text-neutral-300 transition-colors group-hover:text-neutral-600"
+                        />
+                      </div>
+                      <div class="flex items-center gap-3 text-[10px]">
+                        <span class="font-mono text-neutral-400">
+                          {dayjs(post.date).format("MM.DD")}
+                        </span>
+                        <span
+                          class={`flex items-center gap-1 ${
+                            iconType === "zenn"
+                              ? "text-emerald-600"
+                              : iconType === "devio"
+                                ? "text-orange-600"
+                                : iconType === "speakerdeck"
+                                  ? "text-sky-600"
+                                  : "text-neutral-500"
+                          }`}
+                        >
+                          <span
+                            class={`h-1.5 w-1.5 rounded-full ${
+                              iconType === "zenn"
+                                ? "bg-emerald-500"
+                                : iconType === "devio"
+                                  ? "bg-orange-500"
+                                  : iconType === "speakerdeck"
+                                    ? "bg-sky-500"
+                                    : "bg-neutral-400"
+                            }`}
+                          />
+                          {getHostFromURL(post.url)}
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>

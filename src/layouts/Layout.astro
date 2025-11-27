@@ -1,9 +1,9 @@
 ---
+import Nav from "@components/Nav.astro";
 import { SITE } from "@config";
 import "@styles/base.css";
-import { ViewTransitions } from "astro:transitions";
-
-const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+import { ClientRouter } from "astro:transitions";
+import PageFooter from "@components/PageFooter.astro";
 
 export interface Props {
   title?: string;
@@ -11,6 +11,7 @@ export interface Props {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
+  currentPage?: "about" | "blog";
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   description = SITE.desc,
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  currentPage,
 } = Astro.props;
 
 const socialImageURL = new URL(
@@ -70,23 +72,15 @@ const socialImageURL = new URL(
 
     <meta name="theme-color" content="" />
 
-    {
-      // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
-      // include google-site-verification tag in the heading
-      // Learn more: https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag
-      googleSiteVerification && (
-        <meta
-          name="google-site-verification"
-          content={googleSiteVerification}
-        />
-      )
-    }
-
-    <ViewTransitions />
+    <ClientRouter />
 
     <script is:inline src="/toggle-theme.js"></script>
   </head>
-  <body>
-    <slot />
+  <body class="bg-white text-neutral-900 antialiased">
+    <div class="min-h-screen bg-white text-neutral-900 font-sans selection:bg-black selection:text-white">
+      <Nav currentPage={currentPage} />
+      <slot />
+      <PageFooter showContact />
+    </div>
   </body>
 </html>

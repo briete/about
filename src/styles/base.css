@@ -1,6 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Tailwind v4: Define custom theme colors */
+@theme {
+  /* Light theme colors (default) */
+  --color-skin-fill: rgb(251 254 251);
+  --color-skin-accent: rgb(0 108 172);
+  --color-skin-base: rgb(40 39 40);
+  --color-skin-inverted: rgb(251 254 251);
+  --color-skin-card: rgb(230 230 230);
+  --color-skin-card-muted: rgb(205 205 205);
+  --color-skin-line: rgb(236 233 233);
+
+  /* Font family */
+  --font-mono: "IBM Plex Mono", monospace;
+}
 
 @layer base {
   :root,
@@ -29,48 +42,107 @@
     display: block;
   }
   body {
-    @apply flex min-h-[100svh] flex-col bg-skin-fill font-mono text-skin-base 
-    selection:bg-skin-accent selection:bg-opacity-70 selection:text-skin-inverted;
+    @apply flex min-h-[100svh] flex-col font-mono;
+    background-color: rgb(var(--color-fill));
+    color: rgb(var(--color-text-base));
+  }
+  body::selection {
+    background-color: rgb(var(--color-accent) / 0.7);
+    color: rgb(var(--color-fill));
   }
   section,
   footer {
     @apply mx-auto max-w-3xl px-4;
   }
   a {
-    @apply outline-2 outline-offset-1 outline-skin-fill 
-    focus-visible:no-underline focus-visible:outline-dashed;
+    @apply outline-offset-1 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+  }
+  a:focus-visible {
+    outline-color: rgb(var(--color-accent));
   }
   svg {
-    @apply inline-block h-6 w-6 fill-skin-base group-hover:fill-skin-accent;
+    @apply inline-block h-6 w-6;
+    fill: rgb(var(--color-text-base));
+  }
+  svg:is(.group:hover *) {
+    fill: rgb(var(--color-accent));
   }
   svg.icon-tabler {
-    @apply inline-block h-6 w-6 scale-125 fill-transparent 
-    stroke-current stroke-2 opacity-90 group-hover:fill-transparent 
-    sm:scale-110;
+    @apply inline-block h-6 w-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 sm:scale-110;
   }
-  .prose {
-    @apply prose-headings:!mb-3 prose-headings:!text-skin-base 
-    prose-h3:italic prose-p:!text-skin-base 
-    prose-a:!text-skin-base prose-a:!decoration-dashed prose-a:underline-offset-8
-    hover:prose-a:text-skin-accent prose-blockquote:!border-l-skin-accent
-    prose-blockquote:border-opacity-50 prose-blockquote:opacity-80
-    prose-figcaption:!text-skin-base prose-figcaption:opacity-70
-    prose-strong:!text-skin-base
-
-    
-    prose-code:rounded prose-code:bg-skin-card 
-    prose-code:bg-opacity-75 prose-code:p-1 prose-code:!text-skin-base 
-    prose-code:before:!content-[''] prose-code:after:!content-['']
-    prose-pre:!text-skin-base prose-ol:!text-skin-base 
-    prose-ul:overflow-x-clip prose-ul:!text-skin-base prose-li:marker:!text-skin-accent
-    prose-table:text-skin-base prose-th:border
-    prose-th:border-skin-line prose-td:border 
-    prose-td:border-skin-line prose-img:mx-auto 
-    prose-img:!mt-2 prose-img:border-2 
-    prose-img:border-skin-line prose-hr:!border-skin-line;
+  svg.icon-tabler:is(.group:hover *) {
+    fill: transparent;
+  }
+  .prose :where(h1, h2, h3, h4, h5, h6) {
+    @apply !mb-3;
+    color: rgb(var(--color-text-base));
+  }
+  .prose :where(h3) {
+    @apply italic;
+  }
+  .prose :where(p) {
+    color: rgb(var(--color-text-base));
+  }
+  .prose :where(a) {
+    color: rgb(var(--color-text-base));
+    @apply !decoration-dashed underline-offset-8;
+  }
+  .prose :where(a):hover {
+    color: rgb(var(--color-accent));
+  }
+  .prose :where(blockquote) {
+    border-left-color: rgb(var(--color-accent) / 0.5);
+    @apply opacity-80;
+  }
+  .prose :where(figcaption) {
+    color: rgb(var(--color-text-base));
+    @apply opacity-70;
+  }
+  .prose :where(strong) {
+    color: rgb(var(--color-text-base));
+  }
+  .prose :where(code) {
+    @apply rounded p-1;
+    background-color: rgb(var(--color-card) / 0.75);
+    color: rgb(var(--color-text-base));
+  }
+  .prose :where(code)::before,
+  .prose :where(code)::after {
+    content: "";
+  }
+  .prose :where(pre) {
+    color: rgb(var(--color-text-base));
+  }
+  .prose :where(ol),
+  .prose :where(ul) {
+    color: rgb(var(--color-text-base));
+  }
+  .prose :where(ul) {
+    @apply overflow-x-clip;
+  }
+  .prose :where(li)::marker {
+    color: rgb(var(--color-accent));
+  }
+  .prose :where(table) {
+    color: rgb(var(--color-text-base));
+  }
+  .prose :where(th),
+  .prose :where(td) {
+    @apply border;
+    border-color: rgb(var(--color-border));
+  }
+  .prose :where(img) {
+    @apply mx-auto !mt-2 border-2;
+    border-color: rgb(var(--color-border));
+  }
+  .prose :where(hr) {
+    border-color: rgb(var(--color-border));
   }
   .prose a {
-    @apply break-words hover:!text-skin-accent;
+    @apply break-words;
+  }
+  .prose a:hover {
+    color: rgb(var(--color-accent));
   }
   .prose thead th:first-child,
   tbody td:first-child,
@@ -81,10 +153,12 @@
     @apply mb-2;
   }
   .prose details {
-    @apply inline-block cursor-pointer select-none text-skin-base;
+    @apply inline-block cursor-pointer select-none;
+    color: rgb(var(--color-text-base));
   }
   .prose summary {
-    @apply focus-outline;
+    @apply outline-2 outline-offset-1 focus-visible:no-underline focus-visible:outline-dashed;
+    outline-color: rgb(var(--color-accent));
   }
   .prose h2#table-of-contents + p {
     @apply hidden;
@@ -102,17 +176,17 @@
 
   /* Track */
   ::-webkit-scrollbar-track {
-    @apply bg-skin-fill;
+    background-color: rgb(var(--color-fill));
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    @apply bg-skin-card;
+    background-color: rgb(var(--color-card));
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-skin-card-muted;
+    background-color: rgb(var(--color-card-muted));
   }
 
   code,
@@ -125,11 +199,19 @@
   }
 }
 
-@layer components {
-  .display-none {
-    @apply hidden;
-  }
-  .focus-outline {
-    @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
-  }
+/* Custom utilities for v4 */
+@utility display-none {
+  display: none;
+}
+
+/* focus-outline as regular CSS class */
+.focus-outline {
+  outline-width: 2px;
+  outline-offset: 1px;
+  outline-color: rgb(var(--color-accent));
+}
+
+.focus-outline:focus-visible {
+  text-decoration: none;
+  outline-style: dashed;
 }
