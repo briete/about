@@ -13,6 +13,23 @@
 
   /* Font family */
   --font-mono: "IBM Plex Mono", monospace;
+
+  /* Animation keyframes */
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-delayed: float 10s ease-in-out infinite 2s;
+  --animate-float-slow: float 12s ease-in-out infinite 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
 }
 
 @layer base {

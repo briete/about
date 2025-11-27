@@ -103,9 +103,35 @@ const levelStyles: Record<Level, string> = {
   Intermediate: "text-neutral-500 border-transparent",
 };
 
-type Achievement = {
-  text: string;
-  link?: { href: string; label: string };
+// Tech icon mapping for work experience
+const techIcons: Record<string, string> = {
+  "Kotlin": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "Spring Boot": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+  "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  "Hono": "hono",
+  "AWS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  "Google Cloud": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+  "Cloudflare": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
+  "Terraform": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+  "Nuxt": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg",
+  "Vue.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+  "GraphQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+  "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  "Firebase": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+  "Angular": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+  "DynamoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg",
+  ".NET Framework": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
+  "ASP.NET": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
+  "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+  "SQL Server": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+  "Ionic Framework": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
+  "Lambda": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  "VB.NET": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualbasic/visualbasic-original.svg",
+  "AWS IoT Greengrass": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
 };
 
 type Project = {
@@ -118,7 +144,6 @@ type Position = {
   title: string;
   period: string;
   description: string;
-  achievements?: Achievement[];
   projects?: Project[];
   techStack?: string[];
 };
@@ -192,15 +217,13 @@ const workExperiences: WorkExperience[] = [
       {
         title: "人材系スタートアップ企業",
         period: "2024.07 — Present",
-        description:
-          "人材系SaaSの開発支援",
+        description: "人材系SaaSの開発支援",
         techStack: ["Cloudflare", "Hono", "Next.js", "React", "TypeScript"],
       },
       {
         title: "医療系スタートアップ企業",
         period: "2023.06 — Present",
-        description:
-          "医療系SaaSの開発支援",
+        description: "医療系SaaSの開発支援",
         techStack: ["Google Cloud", "Firebase", "Nuxt", "Vue.js", "TypeScript"],
       },
     ],
@@ -238,6 +261,34 @@ const workExperiences: WorkExperience[] = [
     ],
   },
 ];
+
+const certifications = {
+  ipa: {
+    title: "情報処理技術者試験",
+    certs: [
+      "データベーススペシャリスト試験",
+      "応用情報技術者試験",
+      "基本情報技術者試験",
+    ],
+  },
+  aws: {
+    title: "AWS認定資格",
+    awards: [
+      { name: "Japan AWS All Certifications Engineer", period: "2022-2025" },
+      { name: "APN AWS Top Engineer", period: "2021" },
+    ],
+    certs: [
+      "AWS Certified Solutions Architect - Professional",
+      "AWS Certified DevOps Engineer - Professional",
+      "AWS Certified Security - Specialty",
+      "AWS Certified Advanced Networking - Specialty",
+      "AWS Certified Data Engineer – Associate",
+      "AWS Certified Machine Learning - Specialty",
+      "AWS Certified Machine Learning Engineer - Associate",
+      "AWS Certified AI - Practitioner",
+    ],
+  },
+};
 ---
 
 <Layout
@@ -248,7 +299,7 @@ const workExperiences: WorkExperience[] = [
   <main class="mx-auto max-w-xl px-6 pb-20 pt-28">
     <section id="about" class="mb-16">
       <h1 class="mb-6 text-3xl font-extrabold leading-tight tracking-tight">
-        ID: briete
+        Naoya Sato
       </h1>
       <p class="mb-8 text-sm leading-relaxed text-neutral-600">
         クラウドネイティブなWebアプリケーション開発を専門とするアプリケーションエンジニア。
@@ -273,7 +324,7 @@ const workExperiences: WorkExperience[] = [
     </section>
 
     <section class="mb-16">
-      <div class="rounded-2xl border border-neutral-100 bg-neutral-50 p-6">
+      <div class="rounded-2xl border border-neutral-200 bg-white p-6">
         <div class="mb-6 flex items-center gap-2 text-neutral-900">
           <Award size={20} />
           <h2 class="text-lg font-bold">Certifications</h2>
@@ -281,14 +332,10 @@ const workExperiences: WorkExperience[] = [
 
         <div class="space-y-8">
           <div>
-            <h3 class="mb-3 text-sm font-bold text-neutral-900">情報処理技術者試験</h3>
+            <h3 class="mb-3 text-sm font-bold text-neutral-900">{certifications.ipa.title}</h3>
             <div class="flex flex-wrap gap-2">
               {
-                [
-                  "データベーススペシャリスト試験", 
-                  "応用情報技術者試験", 
-                  "基本情報技術者試験"
-                ].map(cert => (
+                certifications.ipa.certs.map(cert => (
                   <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600">
                     {cert}
                   </span>
@@ -299,33 +346,26 @@ const workExperiences: WorkExperience[] = [
 
           <div>
             <div class="mb-3 flex items-center justify-between">
-              <h3 class="text-sm font-bold text-neutral-900">AWS認定資格</h3>
+              <h3 class="text-sm font-bold text-neutral-900">{certifications.aws.title}</h3>
             </div>
 
             <div class="mb-4 space-y-1">
-              <p class="text-xs text-neutral-500">
-                <span class="font-bold text-neutral-700">Japan AWS All Certifications Engineer</span> (2022-2025)
-              </p>
-              <p class="text-xs text-neutral-500">
-                <span class="font-bold text-neutral-700">APN AWS Top Engineer</span> (2021)
-              </p>
+              {
+                certifications.aws.awards.map(award => (
+                  <p class="text-xs text-neutral-500">
+                    <span class="font-bold text-neutral-700">{award.name}</span> ({award.period})
+                  </p>
+                ))
+              }
             </div>
             <div class="flex flex-wrap gap-2">
               {
-                [
-                  "Solutions Architect - Professional",
-                  "DevOps Engineer - Professional",
-                  "Security - Specialty",
-                  "Advanced Networking - Specialty",
-                ].map(cert => (
+                certifications.aws.certs.map(cert => (
                   <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600">
                     AWS Certified {cert}
                   </span>
                 ))
               }
-              <span class="rounded border border-neutral-200 bg-neutral-100 px-2.5 py-1.5 text-[10px] font-medium text-neutral-400">
-                + 8 Others
-              </span>
             </div>
           </div>
         </div>
@@ -335,7 +375,7 @@ const workExperiences: WorkExperience[] = [
     <section id="skills" class="mb-16">
       <h2 class="mb-6 text-xs font-bold uppercase tracking-widest text-neutral-400">Skills</h2>
       <div class="space-y-4">
-        <div class="rounded-xl border border-neutral-200 p-5 transition-colors hover:border-neutral-400">
+        <div class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400">
           <div class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2">
             <Cloud size={16} class="text-neutral-500" />
             <h3 class="text-sm font-bold">Cloud & Infrastructure</h3>
@@ -364,7 +404,7 @@ const workExperiences: WorkExperience[] = [
           </div>
         </div>
 
-        <div class="rounded-xl border border-neutral-200 p-5 transition-colors hover:border-neutral-400">
+        <div class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400">
           <div class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2">
             <Code size={16} class="text-neutral-500" />
             <h3 class="text-sm font-bold">Languages & Frameworks</h3>
@@ -420,49 +460,32 @@ const workExperiences: WorkExperience[] = [
               ) : (
                 <h3 class="mb-4 text-sm font-bold text-neutral-900">{exp.company}</h3>
               )}
-              <div class={`grid ${exp.period ? "gap-6" : "gap-4"}`}>
+              <div class="grid gap-6">
                 {exp.positions.map(pos => (
                   <div
-                    class={`rounded-lg border border-neutral-200 transition-colors hover:border-neutral-400 ${exp.period ? "bg-white p-5" : "p-4"}`}
+                    class="rounded-lg border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
                   >
-                    <div class={`flex items-start justify-between ${pos.achievements ? "mb-3" : "mb-2"}`}>
+                    <div class={`flex items-start justify-between mb-2`}>
                       <h4 class="text-xs font-bold text-neutral-900">{pos.title}</h4>
                       <span class="font-mono text-[10px] text-neutral-400">{pos.period}</span>
                     </div>
-                    <p class={`text-xs text-neutral-600 ${pos.achievements ? "mb-4 leading-relaxed" : pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}>
+                    <p class={`text-xs text-neutral-600 ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}>
                       {pos.description}
                     </p>
-                    {pos.achievements && (
-                      <div class="mb-4 rounded-md border border-neutral-100 bg-neutral-50 p-3">
-                        <h5 class="mb-2 text-[10px] font-bold text-neutral-700">達成したこと</h5>
-                        <ul class="list-inside list-disc space-y-1.5 text-[11px] text-neutral-600">
-                          {pos.achievements.map(achievement => (
-                            <li>
-                              {achievement.text}
-                              {achievement.link && (
-                                <a
-                                  href={achievement.link.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  class="ml-1 inline-flex items-center text-neutral-400 transition-colors hover:text-black"
-                                >
-                                  <ExternalLink size={10} class="mr-0.5" /> {achievement.link.label}
-                                </a>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
                     {pos.projects && (
                       <div class="space-y-5 text-neutral-600">
                         {pos.projects.map(project => (
                           <div>
                             <h5 class="text-[11px] font-bold text-neutral-900">{project.title}</h5>
                             <p class="mb-2 text-[10px] text-neutral-600">{project.description}</p>
-                            <div class="flex flex-wrap gap-1">
+                            <div class="flex flex-wrap gap-1.5">
                               {project.techStack.map(tech => (
-                                <span class="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[9px] font-medium text-neutral-600">
+                                <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600">
+                                  {techIcons[tech] === "hono" ? (
+                                    <Flame size={10} class="text-orange-500" />
+                                  ) : techIcons[tech] ? (
+                                    <img src={techIcons[tech]} alt={tech} class="h-3 w-3" />
+                                  ) : null}
                                   {tech}
                                 </span>
                               ))}
@@ -471,19 +494,15 @@ const workExperiences: WorkExperience[] = [
                         ))}
                       </div>
                     )}
-                    {pos.techStack && !pos.achievements && !pos.projects && (
-                      <div class="flex flex-wrap gap-1">
-                        {pos.techStack.map(tech => (
-                          <span class="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[9px] font-medium text-neutral-600">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {pos.techStack && pos.achievements && (
+                    {pos.techStack && !pos.projects && (
                       <div class="flex flex-wrap gap-1.5 border-t border-neutral-100 pt-3">
                         {pos.techStack.map(tech => (
-                          <span class="rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[9px] font-medium text-neutral-600">
+                          <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600">
+                            {techIcons[tech] === "hono" ? (
+                              <Flame size={10} class="text-orange-500" />
+                            ) : techIcons[tech] ? (
+                              <img src={techIcons[tech]} alt={tech} class="h-3 w-3" />
+                            ) : null}
                             {tech}
                           </span>
                         ))}
