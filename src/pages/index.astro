@@ -4,15 +4,22 @@ import {
   Award,
   Cloud,
   Code,
-  ExternalLink,
-  FileText,
   Flame,
   Github,
+  Newspaper,
 } from "lucide-astro";
+import zennLogo from "@assets/zenn-logo.svg";
 
 type Level = "Expert" | "Advanced" | "Intermediate";
 
-const heroLinks = [
+type HeroLink = {
+  href: string;
+  label: string;
+  icon?: typeof Github;
+  iconSrc?: ImageMetadata | string;
+};
+
+const heroLinks: HeroLink[] = [
   {
     href: "https://github.com/briete",
     label: "GitHub",
@@ -21,12 +28,12 @@ const heroLinks = [
   {
     href: "https://zenn.dev/briete",
     label: "Zenn",
-    icon: ExternalLink,
+    iconSrc: zennLogo,
   },
   {
     href: "https://dev.classmethod.jp/author/sato-naoya/",
     label: "DevelopersIO",
-    icon: FileText,
+    icon: Newspaper,
   },
 ];
 
@@ -278,14 +285,14 @@ const certifications = {
       { name: "APN AWS Top Engineer", period: "2021" },
     ],
     certs: [
-      "AWS Certified Solutions Architect - Professional",
-      "AWS Certified DevOps Engineer - Professional",
-      "AWS Certified Security - Specialty",
-      "AWS Certified Advanced Networking - Specialty",
-      "AWS Certified Data Engineer – Associate",
-      "AWS Certified Machine Learning - Specialty",
-      "AWS Certified Machine Learning Engineer - Associate",
-      "AWS Certified AI - Practitioner",
+      "Solutions Architect - Professional",
+      "DevOps Engineer - Professional",
+      "Security - Specialty",
+      "Advanced Networking - Specialty",
+      "Data Engineer – Associate",
+      "Machine Learning - Specialty",
+      "Machine Learning Engineer - Associate",
+      "AI - Practitioner",
     ],
   },
 };
@@ -308,14 +315,18 @@ const certifications = {
       </p>
       <div class="flex flex-wrap items-center gap-4">
         {
-          heroLinks.map(({ href, label, icon: Icon }) => (
+          heroLinks.map(({ href, label, icon: Icon, iconSrc }) => (
             <a
               href={href}
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1.5 text-xs font-bold transition-all hover:border-black hover:bg-black hover:text-white"
             >
-              <Icon size={14} />
+              {Icon ? (
+                <Icon size={14} />
+              ) : iconSrc ? (
+                <img src={typeof iconSrc === "string" ? iconSrc : iconSrc.src} alt={label} class="h-3.5 w-3.5" />
+              ) : null}
               {label}
             </a>
           ))
