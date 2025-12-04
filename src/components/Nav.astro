@@ -16,12 +16,16 @@ const { currentPage } = Astro.props;
       href="/"
       class="flex items-center gap-2 font-mono text-base font-bold tracking-tight hover:opacity-70"
     >
-      <span class="rounded bg-black p-1 text-white dark:bg-white dark:text-black">
+      <span
+        class="rounded bg-black p-1 text-white dark:bg-white dark:text-black"
+      >
         <Terminal size={14} />
       </span>
       briete.me
     </a>
-    <div class="flex items-center gap-4 text-xs font-medium text-neutral-500 dark:text-neutral-400">
+    <div
+      class="flex items-center gap-4 text-xs font-medium text-neutral-500 dark:text-neutral-400"
+    >
       <a
         href="/"
         class={`transition-colors hover:text-black dark:hover:text-white ${currentPage === "about" ? "text-black dark:text-white" : ""}`}

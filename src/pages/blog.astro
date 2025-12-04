@@ -43,7 +43,9 @@ const getIconForHost = (url: string) => {
         </div>
         <div>
           <h1 class="text-2xl font-extrabold tracking-tight">Blog & Slides</h1>
-          <p class="text-xs text-neutral-500 dark:text-neutral-400">技術ブログ・登壇資料</p>
+          <p class="text-xs text-neutral-500 dark:text-neutral-400">
+            技術ブログ・登壇資料
+          </p>
         </div>
       </div>
       <div class="mb-6 flex flex-wrap gap-2">
@@ -69,13 +71,17 @@ const getIconForHost = (url: string) => {
     </section>
 
     <section>
-      <div class="ml-2 space-y-10 border-l border-neutral-200 dark:border-neutral-700">
+      <div
+        class="ml-2 space-y-10 border-l border-neutral-200 dark:border-neutral-700"
+      >
         {
           years.map((year, yearIndex) => (
             <div class="relative pl-6">
               <span
                 class={`absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full border border-white dark:border-neutral-900 ${
-                  yearIndex === 0 ? "bg-black dark:bg-white" : "bg-neutral-300 dark:bg-neutral-600"
+                  yearIndex === 0
+                    ? "bg-black dark:bg-white"
+                    : "bg-neutral-300 dark:bg-neutral-600"
                 }`}
               />
               <div class="mb-4 flex items-center gap-2">
