@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Custom dark variant using data-theme attribute */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* Tailwind v4: Define custom theme colors */
 @theme {
   /* Light theme colors (default) */

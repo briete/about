@@ -133,9 +133,9 @@ const techStack = {
 };
 
 const levelStyles: Record<Level, string> = {
-  Expert: "bg-black text-white border-black",
-  Advanced: "bg-neutral-100 text-neutral-700 border-neutral-200",
-  Intermediate: "text-neutral-500 border-transparent",
+  Expert: "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white",
+  Advanced: "bg-neutral-100 text-neutral-700 border-neutral-200 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-600",
+  Intermediate: "text-neutral-500 border-transparent dark:text-neutral-400",
 };
 
 // Tech icon mapping for work experience
@@ -325,7 +325,7 @@ const certifications = {
       <h1 class="mb-6 text-3xl font-extrabold leading-tight tracking-tight">
         Naoya Sato
       </h1>
-      <p class="mb-8 text-sm leading-relaxed text-neutral-600">
+      <p class="mb-8 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
         Software Engineer at Classmethod, Inc. <br /><br />
         Specializing in cloud-native web application development. Experienced in
         every phase from contract development to in-house product creation, including
@@ -339,7 +339,7 @@ const certifications = {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1.5 text-xs font-bold transition-all hover:border-black hover:bg-black hover:text-white"
+              class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1.5 text-xs font-bold transition-all hover:border-black hover:bg-black hover:text-white dark:border-neutral-700 dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
             >
               {Icon ? (
                 <Icon size={14} />
@@ -358,21 +358,21 @@ const certifications = {
     </section>
 
     <section class="mb-16">
-      <div class="rounded-2xl border border-neutral-200 bg-white p-6">
-        <div class="mb-6 flex items-center gap-2 text-neutral-900">
+      <div class="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
+        <div class="mb-6 flex items-center gap-2 text-neutral-900 dark:text-neutral-100">
           <Award size={20} />
           <h2 class="text-lg font-bold">Certifications</h2>
         </div>
 
         <div class="space-y-8">
           <div>
-            <h3 class="mb-3 text-sm font-bold text-neutral-900">
+            <h3 class="mb-3 text-sm font-bold text-neutral-900 dark:text-neutral-100">
               {certifications.ipa.title}
             </h3>
             <div class="flex flex-wrap gap-2">
               {
                 certifications.ipa.certs.map(cert => (
-                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600">
+                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
                     {cert}
                   </span>
                 ))
@@ -382,7 +382,7 @@ const certifications = {
 
           <div>
             <div class="mb-3 flex items-center justify-between">
-              <h3 class="text-sm font-bold text-neutral-900">
+              <h3 class="text-sm font-bold text-neutral-900 dark:text-neutral-100">
                 {certifications.aws.title}
               </h3>
             </div>
@@ -390,8 +390,8 @@ const certifications = {
             <div class="mb-4 space-y-1">
               {
                 certifications.aws.awards.map(award => (
-                  <p class="text-xs text-neutral-500">
-                    <span class="font-bold text-neutral-700">{award.name}</span>{" "}
+                  <p class="text-xs text-neutral-500 dark:text-neutral-400">
+                    <span class="font-bold text-neutral-700 dark:text-neutral-300">{award.name}</span>{" "}
                     ({award.period})
                   </p>
                 ))
@@ -400,7 +400,7 @@ const certifications = {
             <div class="flex flex-wrap gap-2">
               {
                 certifications.aws.certs.map(cert => (
-                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600">
+                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
                     AWS Certified {cert}
                   </span>
                 ))
@@ -419,12 +419,12 @@ const certifications = {
       </h2>
       <div class="space-y-4">
         <div
-          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
+          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-500"
         >
           <div
-            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2"
+            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2 dark:border-neutral-700"
           >
-            <Cloud size={16} class="text-neutral-500" />
+            <Cloud size={16} class="text-neutral-500 dark:text-neutral-400" />
             <h3 class="text-sm font-bold">Cloud & Infrastructure</h3>
           </div>
           <div class="space-y-3">
@@ -440,7 +440,7 @@ const certifications = {
                       width="20"
                       height="20"
                     />
-                    <span class="font-mono font-medium text-neutral-700">
+                    <span class="font-mono font-medium text-neutral-700 dark:text-neutral-300">
                       {tech.name}
                     </span>
                   </div>
@@ -456,12 +456,12 @@ const certifications = {
         </div>
 
         <div
-          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
+          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-500"
         >
           <div
-            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2"
+            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2 dark:border-neutral-700"
           >
-            <Code size={16} class="text-neutral-500" />
+            <Code size={16} class="text-neutral-500 dark:text-neutral-400" />
             <h3 class="text-sm font-bold">Languages & Frameworks</h3>
           </div>
           <div class="space-y-3">
@@ -483,7 +483,7 @@ const certifications = {
                         height="20"
                       />
                     )}
-                    <span class="font-mono font-medium text-neutral-700">
+                    <span class="font-mono font-medium text-neutral-700 dark:text-neutral-300">
                       {tech.name}
                     </span>
                   </div>
@@ -506,12 +506,12 @@ const certifications = {
       >
         Work
       </h2>
-      <div class="ml-2 space-y-12 border-l border-neutral-200">
+      <div class="ml-2 space-y-12 border-l border-neutral-200 dark:border-neutral-700">
         {
           workExperiences.map(exp => (
             <div class="relative pl-6">
               <span
-                class={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border border-white ${exp.isCurrent ? "bg-black" : "bg-neutral-300"}`}
+                class={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border border-white dark:border-neutral-900 ${exp.isCurrent ? "bg-black dark:bg-white" : "bg-neutral-300 dark:bg-neutral-600"}`}
               />
               {exp.period ? (
                 <div class="mb-6">
@@ -523,15 +523,15 @@ const certifications = {
                   </div>
                 </div>
               ) : (
-                <h3 class="mb-4 text-sm font-bold text-neutral-900">
+                <h3 class="mb-4 text-sm font-bold text-neutral-900 dark:text-neutral-100">
                   {exp.company}
                 </h3>
               )}
               <div class="grid gap-6">
                 {exp.positions.map(pos => (
-                  <div class="rounded-lg border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400">
+                  <div class="rounded-lg border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-500">
                     <div class={`mb-2 flex items-start justify-between`}>
-                      <h4 class="text-xs font-bold text-neutral-900">
+                      <h4 class="text-xs font-bold text-neutral-900 dark:text-neutral-100">
                         {pos.title}
                       </h4>
                       <span class="font-mono text-[10px] text-neutral-400">
@@ -539,23 +539,23 @@ const certifications = {
                       </span>
                     </div>
                     <p
-                      class={`text-xs text-neutral-600 ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}
+                      class={`text-xs text-neutral-600 dark:text-neutral-400 ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}
                     >
                       {pos.description}
                     </p>
                     {pos.projects && (
-                      <div class="space-y-5 text-neutral-600">
+                      <div class="space-y-5 text-neutral-600 dark:text-neutral-400">
                         {pos.projects.map(project => (
                           <div>
-                            <h5 class="text-[11px] font-bold text-neutral-900">
+                            <h5 class="text-[11px] font-bold text-neutral-900 dark:text-neutral-100">
                               {project.title}
                             </h5>
-                            <p class="mb-2 text-[10px] text-neutral-600">
+                            <p class="mb-2 text-[10px] text-neutral-600 dark:text-neutral-400">
                               {project.description}
                             </p>
                             <div class="flex flex-wrap gap-1.5">
                               {project.techStack.map(tech => (
-                                <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600">
+                                <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
                                   {techIcons[tech] === "hono" ? (
                                     <Flame size={10} class="text-orange-500" />
                                   ) : techIcons[tech] ? (
@@ -574,9 +574,9 @@ const certifications = {
                       </div>
                     )}
                     {pos.techStack && !pos.projects && (
-                      <div class="flex flex-wrap gap-1.5 border-t border-neutral-100 pt-3">
+                      <div class="flex flex-wrap gap-1.5 border-t border-neutral-100 pt-3 dark:border-neutral-700">
                         {pos.techStack.map(tech => (
-                          <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600">
+                          <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
                             {techIcons[tech] === "hono" ? (
                               <Flame size={10} class="text-orange-500" />
                             ) : techIcons[tech] ? (
