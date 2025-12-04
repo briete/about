@@ -47,15 +47,21 @@ const getIconForHost = (url: string) => {
         </div>
       </div>
       <div class="mb-6 flex flex-wrap gap-2">
-        <span class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600">
+        <span
+          class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600"
+        >
           <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
           Zenn
         </span>
-        <span class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600">
+        <span
+          class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600"
+        >
           <span class="h-2 w-2 rounded-full bg-orange-500"></span>
           DevelopersIO
         </span>
-        <span class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600">
+        <span
+          class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1 text-[10px] font-medium text-neutral-600"
+        >
           <span class="h-2 w-2 rounded-full bg-sky-500"></span>
           SpeakerDeck
         </span>
@@ -73,7 +79,9 @@ const getIconForHost = (url: string) => {
                 }`}
               />
               <div class="mb-4 flex items-center gap-2">
-                <h2 class="font-mono text-sm font-bold text-neutral-900">{year}</h2>
+                <h2 class="font-mono text-sm font-bold text-neutral-900">
+                  {year}
+                </h2>
                 <span class="font-mono text-[10px] text-neutral-400">
                   {postsByYear[year].length} posts
                 </span>
@@ -92,9 +100,7 @@ const getIconForHost = (url: string) => {
                         <h3 class="text-sm font-medium leading-snug text-neutral-900 group-hover:text-black">
                           {post.title}
                         </h3>
-                        <ExternalLink
-                          class="mt-0.5 shrink-0 transition-colors group-hover:text-neutral-600"
-                        />
+                        <ExternalLink class="mt-0.5 shrink-0 transition-colors group-hover:text-neutral-600" />
                       </div>
                       <div class="flex items-center gap-3 text-[10px]">
                         <span class="font-mono text-neutral-400">

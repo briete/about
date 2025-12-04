@@ -1,13 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import {
-  Award,
-  Cloud,
-  Code,
-  Flame,
-  Github,
-  Newspaper,
-} from "lucide-astro";
+import { Award, Cloud, Code, Flame, Github, Newspaper } from "lucide-astro";
 import zennLogo from "@assets/zenn-logo.svg";
 
 type Level = "Expert" | "Advanced" | "Intermediate";
@@ -40,29 +33,54 @@ const heroLinks: HeroLink[] = [
 const techStack = {
   languages: [
     {
-      name: "Kotlin",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-      level: "Expert",
-    },
-    {
-      name: "Java",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-      level: "Expert",
-    },
-    {
-      name: "Spring Boot",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-      level: "Expert",
-    },
-    {
       name: "TypeScript",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      level: "Expert",
+    },
+    {
+      name: "JavaScript",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
       level: "Expert",
     },
     {
       name: "Node.js",
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
       level: "Expert",
+    },
+    {
+      name: "Kotlin",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+      level: "Advanced",
+    },
+    {
+      name: "Java",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      level: "Advanced",
+    },
+    {
+      name: "Rust",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "Scala",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "Python",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "C#",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+      level: "Intermediate",
+    },
+    {
+      name: "Spring Boot",
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+      level: "Advanced",
     },
     {
       name: "React",
@@ -122,33 +140,60 @@ const levelStyles: Record<Level, string> = {
 
 // Tech icon mapping for work experience
 const techIcons: Record<string, string> = {
-  "Kotlin": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-  "Spring Boot": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-  "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  "React": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-  "Hono": "hono",
-  "AWS": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-  "Google Cloud": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
-  "Cloudflare": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
-  "Terraform": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
-  "Nuxt": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg",
-  "Vue.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-  "GraphQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
-  "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  "Firebase": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-  "Angular": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
-  "DynamoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg",
-  ".NET Framework": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
-  "ASP.NET": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
+  Kotlin:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "Spring Boot":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+  TypeScript:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  "Node.js":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  React:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "Next.js":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+  Hono: "hono",
+  AWS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  "Google Cloud":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
+  Cloudflare:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
+  Terraform:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+  Nuxt: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg",
+  "Vue.js":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+  GraphQL:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+  Python:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  Firebase:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+  Angular:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+  DynamoDB:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg",
+  ".NET Framework":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
+  "ASP.NET":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
   "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
-  "SQL Server": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
-  "Ionic Framework": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
-  "Lambda": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-  "VB.NET": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualbasic/visualbasic-original.svg",
-  "AWS IoT Greengrass": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  "SQL Server":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+  "Ionic Framework":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
+  Lambda:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  "VB.NET":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualbasic/visualbasic-original.svg",
+  "AWS IoT Greengrass":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  Rust: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg",
+  JavaScript:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  Scala:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg",
 };
 
 type Project = {
@@ -181,19 +226,17 @@ const workExperiences: WorkExperience[] = [
       {
         title: "クラウド事業本部 サービス開発室",
         period: "2022.10 — Present",
-        description:
-          "自社サービスの開発、保守、運用を担当。技術選定から仕様策定、設計、開発までを一貫して遂行。",
-        projects: [
-          {
-            title: "バックエンドAPIのリプレイス",
-            description: "Spring Boot 2.x から 3.x へのアップデートやJavaからKotlin",
-            techStack: ["Spring Boot", "Kotlin", "Java"],
-          },
-          {
-            title: "ユニット・インテグレーション・E2Eテスト環境の整備",
-            description: "ユニット・インテグレーション・E2Eテスト環境の整備",
-            techStack: ["Java", "Spring Boot"],
-          },
+        description: "自社サービスの設計、開発、保守を担当",
+        techStack: [
+          "AWS",
+          "Spring Boot",
+          "TypeScript",
+          "Kotlin",
+          "Java",
+          "Rust",
+          "Python",
+          "Next.js",
+          "React",
         ],
       },
       {
@@ -201,28 +244,15 @@ const workExperiences: WorkExperience[] = [
         period: "2019.04 — 2022.09",
         description:
           "MAD (Modern Application Development)事業を通じて、顧客プロダクトのモダナイズや新規開発を担当。",
-        projects: [
-          {
-            title: "動画配信サービスの受託開発",
-            description: "Vimeoを使用した動画配信サービスの開発",
-            techStack: ["TypeScript", "Node.js", "Nuxt", "Vue.js", "AWS"],
-          },
-          {
-            title: "Webクーポンサービスの受託開発",
-            description: "デジタルクーポンの管理、配信、店舗利用サービスの開発",
-            techStack: ["TypeScript", "Node.js", "React", "GraphQL", "AWS"],
-          },
-          {
-            title: "デジタルギフトサービスの受託開発",
-            description: "POSシステムと連携するデジタルギフト連携サービスの開発",
-            techStack: ["TypeScript", "Node.js", "Java", "AWS"],
-          },
-          {
-            title: "IoT機器管理システムのPoC開発",
-            description:
-              "小売店舗向けカメラデバイス管理、エッジへのアプリデプロイ機構の開発",
-            techStack: ["AWS", "Python", "AWS IoT Greengrass"],
-          },
+        techStack: [
+          "AWS",
+          "TypeScript",
+          "Python",
+          "Node.js",
+          "React",
+          "Nuxt",
+          "Vue.js",
+          "GraphQL",
         ],
       },
     ],
@@ -253,27 +283,8 @@ const workExperiences: WorkExperience[] = [
       {
         title: "一般事業部 開発課",
         period: "2014.04 — 2019.04",
-        description:
-          "プログラマとして受託開発や自社パッケージの販売管理システムの開発、新規事業の立ち上げを担当",
-        projects: [
-            {
-            title: "在庫管理システムの設計・開発",
-            description: "iPhoneに装着するバーコードリーダーと連携した在庫管理システムの設計・開発を担当しました。UI設計、技術選定、設計、開発を一貫して担当",
-            techStack: ["Ionic Framework", "Angular", "DynamoDB", "Lambda"],
-          },
-          {
-            title: "水産加工会社向けの基幹システムのリプレイス",
-            description:
-              "水産加工会社向けの基幹システムのリプレイスを担当",
-            techStack: [".NET Framework", "VB.NET", "SQL Server"],
-          },
-          {
-            title: "販売管理システムの設計・開発",
-            description:
-              "プログラマとして自社パッケージの販売管理システムの開発を担当",
-            techStack: [".NET Framework", "ASP.NET", "C#", "SQL Server"],
-          },
-        ],
+        description: "受託開発や自社パッケージの販売管理システムの開発を担当",
+        techStack: [".NET Framework", "VB.NET", "ASP.NET", "C#"],
       },
     ],
   },
@@ -308,20 +319,18 @@ const certifications = {
 };
 ---
 
-<Layout
-  title="About | Naoya Sato"
-  description="Cloud Native Backend Architect. Kotlin/Spring、TypeScript、AWSで堅牢なシステムを設計・実装します。"
-  currentPage="about"
->
+<Layout title="About | Naoya Sato" currentPage="about">
   <main class="mx-auto max-w-xl px-6 pb-20 pt-28">
     <section id="about" class="mb-16">
       <h1 class="mb-6 text-3xl font-extrabold leading-tight tracking-tight">
         Naoya Sato
       </h1>
       <p class="mb-8 text-sm leading-relaxed text-neutral-600">
-        クラウドネイティブなWebアプリケーション開発を専門とするアプリケーションエンジニア。
-        受託開発から自社のプロダクト開発まで、技術選定・設計・実装・運用の全フェーズを担当。
-        堅牢でスケーラブルなクラウドアーキテクチャの構築を得意とします。
+        Software Engineer at Classmethod, Inc. <br /><br />
+        Specializing in cloud-native web application development. Experienced in
+        every phase from contract development to in-house product creation, including
+        technology selection, design, implementation, and operations. Skilled at
+        building robust and scalable cloud architectures.
       </p>
       <div class="flex flex-wrap items-center gap-4">
         {
@@ -335,7 +344,11 @@ const certifications = {
               {Icon ? (
                 <Icon size={14} />
               ) : iconSrc ? (
-                <img src={typeof iconSrc === "string" ? iconSrc : iconSrc.src} alt={label} class="h-3.5 w-3.5" />
+                <img
+                  src={typeof iconSrc === "string" ? iconSrc : iconSrc.src}
+                  alt={label}
+                  class="h-3.5 w-3.5"
+                />
               ) : null}
               {label}
             </a>
@@ -353,7 +366,9 @@ const certifications = {
 
         <div class="space-y-8">
           <div>
-            <h3 class="mb-3 text-sm font-bold text-neutral-900">{certifications.ipa.title}</h3>
+            <h3 class="mb-3 text-sm font-bold text-neutral-900">
+              {certifications.ipa.title}
+            </h3>
             <div class="flex flex-wrap gap-2">
               {
                 certifications.ipa.certs.map(cert => (
@@ -367,14 +382,17 @@ const certifications = {
 
           <div>
             <div class="mb-3 flex items-center justify-between">
-              <h3 class="text-sm font-bold text-neutral-900">{certifications.aws.title}</h3>
+              <h3 class="text-sm font-bold text-neutral-900">
+                {certifications.aws.title}
+              </h3>
             </div>
 
             <div class="mb-4 space-y-1">
               {
                 certifications.aws.awards.map(award => (
                   <p class="text-xs text-neutral-500">
-                    <span class="font-bold text-neutral-700">{award.name}</span> ({award.period})
+                    <span class="font-bold text-neutral-700">{award.name}</span>{" "}
+                    ({award.period})
                   </p>
                 ))
               }
@@ -394,10 +412,18 @@ const certifications = {
     </section>
 
     <section id="skills" class="mb-16">
-      <h2 class="mb-6 text-xs font-bold uppercase tracking-widest text-neutral-400">Skills</h2>
+      <h2
+        class="mb-6 text-xs font-bold uppercase tracking-widest text-neutral-400"
+      >
+        Skills
+      </h2>
       <div class="space-y-4">
-        <div class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400">
-          <div class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2">
+        <div
+          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
+        >
+          <div
+            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2"
+          >
             <Cloud size={16} class="text-neutral-500" />
             <h3 class="text-sm font-bold">Cloud & Infrastructure</h3>
           </div>
@@ -414,9 +440,13 @@ const certifications = {
                       width="20"
                       height="20"
                     />
-                    <span class="font-mono font-medium text-neutral-700">{tech.name}</span>
+                    <span class="font-mono font-medium text-neutral-700">
+                      {tech.name}
+                    </span>
                   </div>
-                  <span class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}>
+                  <span
+                    class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}
+                  >
                     {tech.level}
                   </span>
                 </div>
@@ -425,8 +455,12 @@ const certifications = {
           </div>
         </div>
 
-        <div class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400">
-          <div class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2">
+        <div
+          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
+        >
+          <div
+            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2"
+          >
             <Code size={16} class="text-neutral-500" />
             <h3 class="text-sm font-bold">Languages & Frameworks</h3>
           </div>
@@ -449,9 +483,13 @@ const certifications = {
                         height="20"
                       />
                     )}
-                    <span class="font-mono font-medium text-neutral-700">{tech.name}</span>
+                    <span class="font-mono font-medium text-neutral-700">
+                      {tech.name}
+                    </span>
                   </div>
-                  <span class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}>
+                  <span
+                    class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}
+                  >
                     {tech.level}
                   </span>
                 </div>
@@ -463,7 +501,11 @@ const certifications = {
     </section>
 
     <section id="work" class="mb-20">
-      <h2 class="mb-8 text-xs font-bold uppercase tracking-widest text-neutral-400">Work</h2>
+      <h2
+        class="mb-8 text-xs font-bold uppercase tracking-widest text-neutral-400"
+      >
+        Work
+      </h2>
       <div class="ml-2 space-y-12 border-l border-neutral-200">
         {
           workExperiences.map(exp => (
@@ -475,37 +517,53 @@ const certifications = {
                 <div class="mb-6">
                   <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
                     <h3 class="text-base font-bold">{exp.company}</h3>
-                    <span class="font-mono text-xs text-neutral-400">{exp.period}</span>
+                    <span class="font-mono text-xs text-neutral-400">
+                      {exp.period}
+                    </span>
                   </div>
                 </div>
               ) : (
-                <h3 class="mb-4 text-sm font-bold text-neutral-900">{exp.company}</h3>
+                <h3 class="mb-4 text-sm font-bold text-neutral-900">
+                  {exp.company}
+                </h3>
               )}
               <div class="grid gap-6">
                 {exp.positions.map(pos => (
-                  <div
-                    class="rounded-lg border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
-                  >
-                    <div class={`flex items-start justify-between mb-2`}>
-                      <h4 class="text-xs font-bold text-neutral-900">{pos.title}</h4>
-                      <span class="font-mono text-[10px] text-neutral-400">{pos.period}</span>
+                  <div class="rounded-lg border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400">
+                    <div class={`mb-2 flex items-start justify-between`}>
+                      <h4 class="text-xs font-bold text-neutral-900">
+                        {pos.title}
+                      </h4>
+                      <span class="font-mono text-[10px] text-neutral-400">
+                        {pos.period}
+                      </span>
                     </div>
-                    <p class={`text-xs text-neutral-600 ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}>
+                    <p
+                      class={`text-xs text-neutral-600 ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}
+                    >
                       {pos.description}
                     </p>
                     {pos.projects && (
                       <div class="space-y-5 text-neutral-600">
                         {pos.projects.map(project => (
                           <div>
-                            <h5 class="text-[11px] font-bold text-neutral-900">{project.title}</h5>
-                            <p class="mb-2 text-[10px] text-neutral-600">{project.description}</p>
+                            <h5 class="text-[11px] font-bold text-neutral-900">
+                              {project.title}
+                            </h5>
+                            <p class="mb-2 text-[10px] text-neutral-600">
+                              {project.description}
+                            </p>
                             <div class="flex flex-wrap gap-1.5">
                               {project.techStack.map(tech => (
                                 <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600">
                                   {techIcons[tech] === "hono" ? (
                                     <Flame size={10} class="text-orange-500" />
                                   ) : techIcons[tech] ? (
-                                    <img src={techIcons[tech]} alt={tech} class="h-3 w-3" />
+                                    <img
+                                      src={techIcons[tech]}
+                                      alt={tech}
+                                      class="h-3 w-3"
+                                    />
                                   ) : null}
                                   {tech}
                                 </span>
@@ -522,7 +580,11 @@ const certifications = {
                             {techIcons[tech] === "hono" ? (
                               <Flame size={10} class="text-orange-500" />
                             ) : techIcons[tech] ? (
-                              <img src={techIcons[tech]} alt={tech} class="h-3 w-3" />
+                              <img
+                                src={techIcons[tech]}
+                                alt={tech}
+                                class="h-3 w-3"
+                              />
                             ) : null}
                             {tech}
                           </span>

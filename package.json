@@ -63,5 +63,5 @@
       "prettier --plugin-search-dir=. --write"
     ]
   },
-  "packageManager": "pnpm@10.23.0"
+  "packageManager": "pnpm@10.24.0"
 }
