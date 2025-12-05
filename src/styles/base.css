@@ -5,15 +5,6 @@
 
 /* Tailwind v4: Define custom theme colors */
 @theme {
-  /* Light theme colors (default) */
-  --color-skin-fill: rgb(251 254 251);
-  --color-skin-accent: rgb(0 108 172);
-  --color-skin-base: rgb(40 39 40);
-  --color-skin-inverted: rgb(251 254 251);
-  --color-skin-card: rgb(230 230 230);
-  --color-skin-card-muted: rgb(205 205 205);
-  --color-skin-line: rgb(236 233 233);
-
   /* Font family */
   --font-mono: "IBM Plex Mono", monospace;
 
@@ -161,9 +152,6 @@
   }
   .prose a {
     @apply break-words;
-  }
-  .prose a:hover {
-    color: rgb(var(--color-accent));
   }
   .prose thead th:first-child,
   tbody td:first-child,
