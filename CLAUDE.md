@@ -34,7 +34,9 @@ pnpm sync         # Sync Astro content collections
 Configured in `tsconfig.json`:
 - `@assets/*` → `src/assets/*`
 - `@components/*` → `src/components/*`
+- `@content/*` → `src/content/*`
 - `@layouts/*` → `src/layouts/*`
+- `@pages/*` → `src/pages/*`
 - `@styles/*` → `src/styles/*`
 - `@utils/*` → `src/utils/*`
 - `@config` → `src/config.ts`
@@ -49,3 +51,10 @@ Configured in `tsconfig.json`:
 ### OG Image Generation
 
 Uses `satori` and `@resvg/resvg-js` for dynamic OG image generation. Templates in `src/utils/og-templates/`.
+
+### Markdown Processing
+
+Configured in `astro.config.ts`:
+- `remark-toc` for table of contents generation
+- `remark-collapse` for collapsible sections (triggers on "Table of contents")
+- Shiki code highlighting with `one-dark-pro` theme

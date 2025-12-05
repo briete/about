@@ -15,10 +15,6 @@ export type SocialObjects = {
   linkTitle: string;
 }[];
 
-export type SocialIcons = {
-  [social in SocialMedia]: string;
-};
-
 export type SocialMedia =
   | "Github"
   | "Facebook"

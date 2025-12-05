@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import Parser from "rss-parser";
 
 export type Item = {
@@ -11,13 +10,13 @@ export type Item = {
 
 export type RSSItem = Pick<Item, "title" | "url" | "date">;
 
-export const urlList = [
+const urlList = [
   "https://zenn.dev/briete/feed",
   "https://dev.classmethod.jp/author/sato-naoya/feed/",
   "https://speakerdeck.com/briete.rss",
 ];
 
-export const fixedItems: Item[] = [
+const fixedItems: Item[] = [
   {
     title:
       "クラスメソッドメンバーズポータルのバックエンドAPIをリプレイスしました",
@@ -107,8 +106,6 @@ async function fetchFeedItems(url: string) {
     return [];
   }
 }
-
-dayjs.extend(relativeTime);
 
 export function getHostFromURL(url: string) {
   const urlObj = new URL(url);
