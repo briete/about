@@ -1,6 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { ExternalLink, Rss } from "@lucide/astro";
+import { Rss } from "@lucide/astro";
 import { build, getHostFromURL } from "@utils/builder";
 import dayjs from "dayjs";
 
@@ -96,12 +96,9 @@ const getIconForHost = (url: string) => {
                       rel="noopener noreferrer"
                       class="group block rounded-2xl border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]"
                     >
-                      <div class="mb-2 flex items-start justify-between gap-3">
-                        <h3 class="text-sm font-medium leading-snug text-ink group-hover:text-brand">
-                          {post.title}
-                        </h3>
-                        <ExternalLink class="mt-0.5 shrink-0 text-muted transition-colors group-hover:text-brand" />
-                      </div>
+                      <h3 class="mb-2 text-sm font-medium leading-snug text-ink group-hover:text-brand">
+                        {post.title}
+                      </h3>
                       <div class="flex items-center gap-3 text-[10px]">
                         <span class="font-mono text-muted">
                           {dayjs(post.date).format("MM.DD")}
