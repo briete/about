@@ -14,10 +14,15 @@ pnpm dev          # Start dev server
 pnpm build        # Type check + build + optimize with jampack
 pnpm preview      # Preview production build
 
-# Code Quality
-pnpm lint         # Run ESLint
-pnpm format       # Format with Prettier
-pnpm format:check # Check formatting
+# Code Quality (Biome)
+pnpm lint         # Lint with Biome
+pnpm format       # Format with Biome (--write)
+pnpm format:check # Check formatting with Biome
+pnpm check        # Biome lint + format + organize imports (--write)
+
+# Note: Biome does not process .astro files (excluded in biome.json).
+# Astro's experimental Biome support is non-idempotent; .astro files are
+# formatted manually. Biome covers JS/TS/TSX/JSON/CSS.
 
 # Astro
 pnpm sync         # Sync Astro content collections
@@ -25,9 +30,10 @@ pnpm sync         # Sync Astro content collections
 
 ## Architecture
 
-- **Framework**: Astro 5.x with React integration for interactive components
+- **Framework**: Astro 6.x with React integration for interactive components
 - **Styling**: Tailwind CSS v4 via Vite plugin (no separate tailwind.config - configured in `src/styles/base.css` using `@theme` directive)
-- **Content**: Astro Content Collections in `src/content/` with Zod schemas defined in `src/content/config.ts`
+- **Content**: Astro Content Collections with Zod schemas defined in `src/content.config.ts` (uses the `glob` loader; the legacy `src/content/config.ts` format was removed in Astro 6)
+- **Linting/Formatting**: Biome (`biome.json`); ESLint and Prettier were removed
 
 ### Path Aliases
 

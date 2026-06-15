@@ -1,5 +1,5 @@
 ---
-import { Moon, Sun, Terminal } from "lucide-astro";
+import { Moon, Sun, Terminal } from "@lucide/astro";
 
 export interface Props {
   currentPage?: "about" | "blog";
@@ -9,42 +9,39 @@ const { currentPage } = Astro.props;
 ---
 
 <nav
-  class="fixed top-0 z-50 w-full border-b border-neutral-200/50 bg-neutral-50/70 backdrop-blur-md dark:border-neutral-700/50 dark:bg-neutral-900/70"
+  class="fixed top-0 z-50 w-full border-b border-line/60 bg-paper/70 backdrop-blur-md"
 >
-  <div class="mx-auto flex h-16 max-w-xl items-center justify-between px-6">
+  <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
     <a
       href="/"
-      class="flex items-center gap-2 font-mono text-base font-bold tracking-tight hover:opacity-70"
+      class="flex items-center gap-2 text-base font-bold tracking-tight text-ink hover:opacity-70"
     >
-      <span
-        class="rounded bg-black p-1 text-white dark:bg-white dark:text-black"
-      >
+      <span class="rounded-md bg-brand p-1 text-white">
         <Terminal size={14} />
       </span>
       briete.me
     </a>
-    <div
-      class="flex items-center gap-4 text-xs font-medium text-neutral-500 dark:text-neutral-400"
-    >
+    <div class="flex items-center gap-4 text-xs font-medium text-muted">
       <a
         href="/"
-        class={`transition-colors hover:text-black dark:hover:text-white ${currentPage === "about" ? "text-black dark:text-white" : ""}`}
+        class={`transition-colors hover:text-ink ${currentPage === "about" ? "text-ink" : ""}`}
       >
         About
       </a>
       <a
         href="/blog"
-        class={`transition-colors hover:text-black dark:hover:text-white ${currentPage === "blog" ? "text-black dark:text-white" : ""}`}
+        class={`transition-colors hover:text-ink ${currentPage === "blog" ? "text-ink" : ""}`}
       >
         Blog
       </a>
       <button
+        type="button"
         id="theme-btn"
-        class="rounded-md p-2 transition-colors hover:bg-neutral-200 dark:hover:bg-neutral-700"
+        class="rounded-md p-2 transition-colors hover:bg-line"
         aria-label="Toggle theme"
       >
-        <Sun size={16} id="sun-svg" class="text-neutral-700" />
-        <Moon size={16} id="moon-svg" class="text-neutral-300" />
+        <Sun size={16} id="sun-svg" class="text-brand" />
+        <Moon size={16} id="moon-svg" class="text-brand" />
       </button>
     </div>
   </div>

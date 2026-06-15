@@ -71,7 +71,7 @@ export async function build(): Promise<Item[]> {
   const feed: RSSItem[] = [];
   for (const url of urlList) {
     const items = await fetchFeedItems(url);
-    feed.push(...(items as any));
+    feed.push(...items);
   }
 
   const allRows = feed.map(item => {
@@ -90,14 +90,14 @@ export async function build(): Promise<Item[]> {
   );
 }
 
-async function fetchFeedItems(url: string) {
+async function fetchFeedItems(url: string): Promise<RSSItem[]> {
   try {
     const feed = await parser.parseURL(url);
     if (!feed?.items?.length) return [];
     return feed.items.map(({ title, link, isoDate }) => {
       return {
-        title,
-        url: link,
+        title: title ?? "",
+        url: link ?? "",
         date: dayjs(isoDate).format("YYYY-MM-DD"),
       };
     });

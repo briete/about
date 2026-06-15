@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { Award, Cloud, Code, Flame, Github, Newspaper } from "lucide-astro";
+import { Award, Cloud, Code, Flame } from "@lucide/astro";
+import GitHubIcon from "@components/icons/GitHubIcon.astro";
 import zennLogo from "@assets/zenn-logo.svg";
 
 type Level = "Expert" | "Advanced" | "Intermediate";
@@ -8,7 +9,7 @@ type Level = "Expert" | "Advanced" | "Intermediate";
 type HeroLink = {
   href: string;
   label: string;
-  icon?: typeof Github;
+  icon?: typeof GitHubIcon;
   iconSrc?: ImageMetadata | string;
 };
 
@@ -16,17 +17,12 @@ const heroLinks: HeroLink[] = [
   {
     href: "https://github.com/briete",
     label: "GitHub",
-    icon: Github,
+    icon: GitHubIcon,
   },
   {
     href: "https://zenn.dev/briete",
     label: "Zenn",
     iconSrc: zennLogo,
-  },
-  {
-    href: "https://dev.classmethod.jp/author/sato-naoya/",
-    label: "DevelopersIO",
-    icon: Newspaper,
   },
 ];
 
@@ -133,11 +129,9 @@ const techStack = {
 };
 
 const levelStyles: Record<Level, string> = {
-  Expert:
-    "bg-black text-white border-black dark:bg-white dark:text-black dark:border-white",
-  Advanced:
-    "bg-neutral-100 text-neutral-700 border-neutral-200 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-600",
-  Intermediate: "text-neutral-500 border-transparent dark:text-neutral-400",
+  Expert: "bg-brand text-white border-brand",
+  Advanced: "bg-line text-ink border-line",
+  Intermediate: "text-muted border-transparent",
 };
 
 // Tech icon mapping for work experience
@@ -322,67 +316,104 @@ const certifications = {
 ---
 
 <Layout title="About | Naoya Sato" currentPage="about">
-  <main class="mx-auto max-w-xl px-6 pb-20 pt-28">
-    <section id="about" class="mb-16">
-      <h1 class="mb-6 text-3xl font-extrabold leading-tight tracking-tight">
-        Naoya Sato
-      </h1>
-      <p
-        class="mb-8 text-sm leading-relaxed text-neutral-600 dark:text-neutral-400"
-      >
-        Software Engineer at Classmethod, Inc. <br /><br />
-        Specializing in cloud-native web application development. Experienced in
-        every phase from contract development to in-house product creation, including
-        technology selection, design, implementation, and operations. Skilled at
-        building robust and scalable cloud architectures.
-      </p>
-      <div class="flex flex-wrap items-center gap-4">
-        {
-          heroLinks.map(({ href, label, icon: Icon, iconSrc }) => (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-1.5 text-xs font-bold transition-all hover:border-black hover:bg-black hover:text-white dark:border-neutral-700 dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
+  <main
+    class="mx-auto flex max-w-5xl flex-col gap-12 px-6 pb-20 pt-28 lg:flex-row lg:items-start lg:gap-16"
+  >
+    <!-- Sticky profile sidebar -->
+    <aside class="lg:sticky lg:top-28 lg:h-fit lg:w-72 lg:shrink-0">
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-4 lg:flex-col lg:items-start">
+          <div
+            class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand text-xl font-extrabold tracking-tight text-white shadow-[0_4px_16px_rgba(176,137,104,0.35)]"
+          >
+            NS
+          </div>
+          <div>
+            <h1
+              class="text-2xl font-extrabold leading-tight tracking-tight text-ink"
             >
-              {Icon ? (
-                <Icon size={14} />
-              ) : iconSrc ? (
-                <img
-                  src={typeof iconSrc === "string" ? iconSrc : iconSrc.src}
-                  alt={label}
-                  class="h-3.5 w-3.5"
-                />
-              ) : null}
-              {label}
-            </a>
-          ))
-        }
-      </div>
-    </section>
+              Naoya Sato
+            </h1>
+            <p class="mt-1 text-sm leading-snug text-muted">
+              Software Engineer<br />at Classmethod, Inc.
+            </p>
+          </div>
+        </div>
 
-    <section class="mb-16">
-      <div
-        class="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800"
-      >
-        <div
-          class="mb-6 flex items-center gap-2 text-neutral-900 dark:text-neutral-100"
+        <p class="text-sm leading-relaxed text-muted">
+          Specializing in cloud-native web application development. Experienced
+          in every phase from contract development to in-house product creation.
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          {
+            heroLinks.map(({ href, label, icon: Icon, iconSrc }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-bold text-ink transition-all hover:border-brand hover:bg-brand hover:text-white"
+              >
+                {Icon ? (
+                  <Icon size={14} />
+                ) : iconSrc ? (
+                  <img
+                    src={typeof iconSrc === "string" ? iconSrc : iconSrc.src}
+                    alt={label}
+                    class="h-3.5 w-3.5"
+                  />
+                ) : null}
+                {label}
+              </a>
+            ))
+          }
+        </div>
+
+        <nav
+          class="hidden border-t border-line pt-5 text-sm font-medium lg:flex lg:flex-col lg:gap-2"
         >
+          <a
+            href="#certifications"
+            class="text-muted transition-colors hover:text-brand"
+          >
+            Certifications
+          </a>
+          <a
+            href="#skills"
+            class="text-muted transition-colors hover:text-brand"
+          >
+            Skills
+          </a>
+          <a
+            href="#work"
+            class="text-muted transition-colors hover:text-brand"
+          >
+            Work
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Scrollable content -->
+    <div class="min-w-0 flex-1 space-y-16">
+      <section id="certifications" class="max-w-none px-0">
+        <div
+          class="rounded-2xl border border-line bg-surface p-6 shadow-[0_1px_2px_rgba(80,60,40,0.04)]"
+        >
+        <div class="mb-6 flex items-center gap-2 text-brand">
           <Award size={20} />
-          <h2 class="text-lg font-bold">Certifications</h2>
+          <h2 class="text-lg font-bold text-ink">Certifications</h2>
         </div>
 
         <div class="space-y-8">
           <div>
-            <h3
-              class="mb-3 text-sm font-bold text-neutral-900 dark:text-neutral-100"
-            >
+            <h3 class="mb-3 text-sm font-bold text-ink">
               {certifications.ipa.title}
             </h3>
             <div class="flex flex-wrap gap-2">
               {
                 certifications.ipa.certs.map(cert => (
-                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
+                  <span class="rounded-md border border-line bg-paper px-2.5 py-1.5 text-[10px] font-medium text-muted">
                     {cert}
                   </span>
                 ))
@@ -392,9 +423,7 @@ const certifications = {
 
           <div>
             <div class="mb-3 flex items-center justify-between">
-              <h3
-                class="text-sm font-bold text-neutral-900 dark:text-neutral-100"
-              >
+              <h3 class="text-sm font-bold text-ink">
                 {certifications.aws.title}
               </h3>
             </div>
@@ -402,11 +431,9 @@ const certifications = {
             <div class="mb-4 space-y-1">
               {
                 certifications.aws.awards.map(award => (
-                  <p class="text-xs text-neutral-500 dark:text-neutral-400">
-                    <span class="font-bold text-neutral-700 dark:text-neutral-300">
-                      {award.name}
-                    </span>{" "}
-                    ({award.period})
+                  <p class="text-xs text-muted">
+                    <span class="font-bold text-ink">{award.name}</span> (
+                    {award.period})
                   </p>
                 ))
               }
@@ -414,7 +441,7 @@ const certifications = {
             <div class="flex flex-wrap gap-2">
               {
                 certifications.aws.certs.map(cert => (
-                  <span class="rounded border border-neutral-200 bg-white px-2.5 py-1.5 text-[10px] font-medium text-neutral-600 dark:border-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
+                  <span class="rounded-md border border-line bg-paper px-2.5 py-1.5 text-[10px] font-medium text-muted">
                     AWS Certified {cert}
                   </span>
                 ))
@@ -425,21 +452,17 @@ const certifications = {
       </div>
     </section>
 
-    <section id="skills" class="mb-16">
-      <h2
-        class="mb-6 text-xs font-bold uppercase tracking-widest text-neutral-400"
-      >
+    <section id="skills" class="max-w-none px-0">
+      <h2 class="mb-6 text-xs font-bold uppercase tracking-widest text-brand">
         Skills
       </h2>
-      <div class="space-y-4">
+      <div class="grid items-start gap-4 sm:grid-cols-2">
         <div
-          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-500"
+          class="rounded-2xl border border-line bg-surface p-5 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]"
         >
-          <div
-            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2 dark:border-neutral-700"
-          >
-            <Cloud size={16} class="text-neutral-500 dark:text-neutral-400" />
-            <h3 class="text-sm font-bold">Cloud & Infrastructure</h3>
+          <div class="mb-4 flex items-center gap-2 border-b border-line pb-2">
+            <Cloud size={16} class="text-brand" />
+            <h3 class="text-sm font-bold text-ink">Cloud & Infrastructure</h3>
           </div>
           <div class="space-y-3">
             {
@@ -454,7 +477,7 @@ const certifications = {
                       width="20"
                       height="20"
                     />
-                    <span class="font-mono font-medium text-neutral-700 dark:text-neutral-300">
+                    <span class="font-mono font-medium text-ink">
                       {tech.name}
                     </span>
                   </div>
@@ -470,13 +493,11 @@ const certifications = {
         </div>
 
         <div
-          class="rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-500"
+          class="rounded-2xl border border-line bg-surface p-5 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]"
         >
-          <div
-            class="mb-4 flex items-center gap-2 border-b border-neutral-100 pb-2 dark:border-neutral-700"
-          >
-            <Code size={16} class="text-neutral-500 dark:text-neutral-400" />
-            <h3 class="text-sm font-bold">Languages & Frameworks</h3>
+          <div class="mb-4 flex items-center gap-2 border-b border-line pb-2">
+            <Code size={16} class="text-brand" />
+            <h3 class="text-sm font-bold text-ink">Languages & Frameworks</h3>
           </div>
           <div class="space-y-3">
             {
@@ -497,7 +518,7 @@ const certifications = {
                         height="20"
                       />
                     )}
-                    <span class="font-mono font-medium text-neutral-700 dark:text-neutral-300">
+                    <span class="font-mono font-medium text-ink">
                       {tech.name}
                     </span>
                   </div>
@@ -514,64 +535,56 @@ const certifications = {
       </div>
     </section>
 
-    <section id="work" class="mb-20">
-      <h2
-        class="mb-8 text-xs font-bold uppercase tracking-widest text-neutral-400"
-      >
+    <section id="work" class="max-w-none px-0">
+      <h2 class="mb-8 text-xs font-bold uppercase tracking-widest text-brand">
         Work
       </h2>
-      <div
-        class="ml-2 space-y-12 border-l border-neutral-200 dark:border-neutral-700"
-      >
+      <div class="ml-2 space-y-12 border-l border-line">
         {
           workExperiences.map(exp => (
             <div class="relative pl-6">
               <span
-                class={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border border-white dark:border-neutral-900 ${exp.isCurrent ? "bg-black dark:bg-white" : "bg-neutral-300 dark:bg-neutral-600"}`}
+                class={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border border-paper ${exp.isCurrent ? "bg-brand" : "bg-muted"}`}
               />
               {exp.period ? (
                 <div class="mb-6">
                   <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
-                    <h3 class="text-base font-bold">{exp.company}</h3>
-                    <span class="font-mono text-xs text-neutral-400">
+                    <h3 class="text-base font-bold text-ink">{exp.company}</h3>
+                    <span class="font-mono text-xs text-muted">
                       {exp.period}
                     </span>
                   </div>
                 </div>
               ) : (
-                <h3 class="mb-4 text-sm font-bold text-neutral-900 dark:text-neutral-100">
-                  {exp.company}
-                </h3>
+                <h3 class="mb-4 text-sm font-bold text-ink">{exp.company}</h3>
               )}
               <div class="grid gap-6">
                 {exp.positions.map(pos => (
-                  <div class="rounded-lg border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-500">
+                  <div class="rounded-2xl border border-line bg-surface p-5 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]">
                     <div class={`mb-2 flex items-start justify-between`}>
-                      <h4 class="text-xs font-bold text-neutral-900 dark:text-neutral-100">
-                        {pos.title}
-                      </h4>
-                      <span class="font-mono text-[10px] text-neutral-400">
+                      <h4 class="text-xs font-bold text-ink">{pos.title}</h4>
+                      <span class="font-mono text-[10px] text-muted">
                         {pos.period}
                       </span>
                     </div>
                     <p
-                      class={`text-xs text-neutral-600 dark:text-neutral-400 ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}
+                      class={`text-xs text-muted ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}
                     >
                       {pos.description}
                     </p>
                     {pos.projects && (
-                      <div class="space-y-5 text-neutral-600 dark:text-neutral-400">
+                      <div class="space-y-5 text-muted">
                         {pos.projects.map(project => (
                           <div>
-                            <h5 class="text-[11px] font-bold text-neutral-900 dark:text-neutral-100">
+                            <h5 class="text-[11px] font-bold text-ink">
                               {project.title}
                             </h5>
-                            <p class="mb-2 text-[10px] text-neutral-600 dark:text-neutral-400">
+                            <p class="mb-2 text-[10px] text-muted">
                               {project.description}
                             </p>
                             <div class="flex flex-wrap gap-1.5">
                               {project.techStack.map(tech => (
-                                <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
+                                <span class="inline-flex items-center gap-1 rounded-full bg-paper py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-muted">
                                   {techIcons[tech] === "hono" ? (
                                     <Flame size={10} class="text-orange-500" />
                                   ) : techIcons[tech] ? (
@@ -590,9 +603,9 @@ const certifications = {
                       </div>
                     )}
                     {pos.techStack && !pos.projects && (
-                      <div class="flex flex-wrap gap-1.5 border-t border-neutral-100 pt-3 dark:border-neutral-700">
+                      <div class="flex flex-wrap gap-1.5 border-t border-line pt-3">
                         {pos.techStack.map(tech => (
-                          <span class="inline-flex items-center gap-1 rounded-full bg-neutral-100 py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-neutral-600 dark:bg-neutral-700 dark:text-neutral-300">
+                          <span class="inline-flex items-center gap-1 rounded-full bg-paper py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-muted">
                             {techIcons[tech] === "hono" ? (
                               <Flame size={10} class="text-orange-500" />
                             ) : techIcons[tech] ? (
@@ -614,6 +627,7 @@ const certifications = {
           ))
         }
       </div>
-    </section>
+      </section>
+    </div>
   </main>
 </Layout>

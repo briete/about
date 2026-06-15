@@ -1,5 +1,5 @@
 ---
-import { Mail } from "lucide-astro";
+import { Mail } from "@lucide/astro";
 
 export interface Props {
   showContact?: boolean;
@@ -12,17 +12,17 @@ const currentYear = new Date().getFullYear();
 
 <footer
   id={showContact ? "contact" : undefined}
-  class={`border-t border-neutral-100 px-6 pb-8 pt-10 text-center dark:border-neutral-800 ${showBackLink ? "mt-20" : ""}`}
+  class={`border-t border-line px-6 pb-8 pt-10 text-center ${showBackLink ? "mt-20" : ""}`}
 >
   {
     showContact && (
       <>
-        <p class="mb-2 text-xs text-neutral-500 dark:text-neutral-400">
+        <p class="mb-2 text-xs text-muted">
           お仕事のご依頼・ご相談などはこちらまで
         </p>
         <a
           href="mailto:contact@briete.me"
-          class="mb-6 inline-flex items-center gap-2 text-sm font-bold transition-opacity hover:opacity-70"
+          class="mb-6 inline-flex items-center gap-2 text-sm font-bold text-ink transition-colors hover:text-brand"
         >
           <Mail size={14} />
           contact@briete.me
@@ -34,13 +34,13 @@ const currentYear = new Date().getFullYear();
     showBackLink && (
       <a
         href="/"
-        class="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-black dark:text-neutral-400 dark:hover:text-white"
+        class="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-brand"
       >
         ← Back to Home
       </a>
     )
   }
-  <p class={`text-[10px] text-neutral-400 ${showBackLink ? "mt-4" : ""}`}>
+  <p class={`text-[10px] text-muted ${showBackLink ? "mt-4" : ""}`}>
     &copy; {currentYear} briete.dev
   </p>
 </footer>
