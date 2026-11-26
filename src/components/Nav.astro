@@ -1,48 +1,40 @@
 ---
-import { Moon, Sun, Terminal } from "@lucide/astro";
+import { Moon, Sun } from "@lucide/astro";
 
 export interface Props {
   currentPage?: "about" | "blog";
 }
 
 const { currentPage } = Astro.props;
+
+const links = [
+  { href: "/", label: "About", key: "about" },
+  { href: "/blog", label: "Blog", key: "blog" },
+] as const;
 ---
 
-<nav
-  class="fixed top-0 z-50 w-full border-b border-line/60 bg-paper/70 backdrop-blur-md"
->
-  <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-    <a
-      href="/"
-      class="flex items-center gap-2 text-base font-bold tracking-tight text-ink hover:opacity-70"
+<header class="flex items-center justify-between py-8 text-sm">
+  <a href="/" class="font-semibold text-ink hover:opacity-60">briete.me</a>
+  <nav class="flex items-center gap-5 text-muted">
+    {
+      links.map(link => (
+        <a
+          href={link.href}
+          aria-current={currentPage === link.key ? "page" : undefined}
+          class={`transition-colors hover:text-ink ${currentPage === link.key ? "text-ink" : ""}`}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <button
+      type="button"
+      id="theme-btn"
+      class="-mr-1 p-1 transition-colors hover:text-ink"
+      aria-label="Toggle theme"
     >
-      <span class="rounded-md bg-brand p-1 text-white">
-        <Terminal size={14} />
-      </span>
-      briete.me
-    </a>
-    <div class="flex items-center gap-4 text-xs font-medium text-muted">
-      <a
-        href="/"
-        class={`transition-colors hover:text-ink ${currentPage === "about" ? "text-ink" : ""}`}
-      >
-        About
-      </a>
-      <a
-        href="/blog"
-        class={`transition-colors hover:text-ink ${currentPage === "blog" ? "text-ink" : ""}`}
-      >
-        Blog
-      </a>
-      <button
-        type="button"
-        id="theme-btn"
-        class="rounded-md p-2 transition-colors hover:bg-line"
-        aria-label="Toggle theme"
-      >
-        <Sun size={16} id="sun-svg" class="text-brand" />
-        <Moon size={16} id="moon-svg" class="text-brand" />
-      </button>
-    </div>
-  </div>
-</nav>
+      <Sun size={16} id="sun-svg" />
+      <Moon size={16} id="moon-svg" />
+    </button>
+  </nav>
+</header>

@@ -1,208 +1,53 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { Award, Cloud, Code, Flame } from "@lucide/astro";
-import GitHubIcon from "@components/icons/GitHubIcon.astro";
-import zennLogo from "@assets/zenn-logo.svg";
 
 type Level = "Expert" | "Advanced" | "Intermediate";
 
-type HeroLink = {
-  href: string;
-  label: string;
-  icon?: typeof GitHubIcon;
-  iconSrc?: ImageMetadata | string;
-};
-
-const heroLinks: HeroLink[] = [
-  {
-    href: "https://github.com/briete",
-    label: "GitHub",
-    icon: GitHubIcon,
-  },
-  {
-    href: "https://zenn.dev/briete",
-    label: "Zenn",
-    iconSrc: zennLogo,
-  },
+const links = [
+  { href: "https://github.com/briete", label: "GitHub" },
+  { href: "https://zenn.dev/briete", label: "Zenn" },
+  { href: "mailto:contact@briete.me", label: "Email" },
 ];
 
-const techStack = {
-  languages: [
+const skills: { category: string; items: { name: string; level: Level }[] }[] =
+  [
     {
-      name: "TypeScript",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      level: "Expert",
+      category: "Cloud & Infrastructure",
+      items: [
+        { name: "AWS", level: "Expert" },
+        { name: "Terraform", level: "Advanced" },
+        { name: "Google Cloud", level: "Intermediate" },
+        { name: "Cloudflare", level: "Intermediate" },
+      ],
     },
     {
-      name: "JavaScript",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      level: "Expert",
+      category: "Languages & Frameworks",
+      items: [
+        { name: "TypeScript", level: "Expert" },
+        { name: "JavaScript", level: "Expert" },
+        { name: "Node.js", level: "Expert" },
+        { name: "Kotlin", level: "Advanced" },
+        { name: "Java", level: "Advanced" },
+        { name: "Spring Boot", level: "Advanced" },
+        { name: "Rust", level: "Intermediate" },
+        { name: "Scala", level: "Intermediate" },
+        { name: "Python", level: "Intermediate" },
+        { name: "C#", level: "Intermediate" },
+        { name: "React", level: "Intermediate" },
+        { name: "Next.js", level: "Intermediate" },
+        { name: "Hono", level: "Intermediate" },
+        { name: "Vue.js", level: "Intermediate" },
+        { name: "Nuxt", level: "Intermediate" },
+      ],
     },
-    {
-      name: "Node.js",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-      level: "Expert",
-    },
-    {
-      name: "Kotlin",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-      level: "Advanced",
-    },
-    {
-      name: "Java",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-      level: "Advanced",
-    },
-    {
-      name: "Rust",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Scala",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Python",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "C#",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Spring Boot",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-      level: "Advanced",
-    },
-    {
-      name: "React",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Next.js",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Hono",
-      icon: "hono",
-      level: "Intermediate",
-    },
-    {
-      name: "Vue.js",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Nuxt",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg",
-      level: "Intermediate",
-    },
-  ],
-  cloud: [
-    {
-      name: "AWS",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-      level: "Expert",
-    },
-    {
-      name: "Google Cloud",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Cloudflare",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
-      level: "Intermediate",
-    },
-    {
-      name: "Terraform",
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
-      level: "Advanced",
-    },
-  ],
-};
+  ];
 
-const levelStyles: Record<Level, string> = {
-  Expert: "bg-brand text-white border-brand",
-  Advanced: "bg-line text-ink border-line",
-  Intermediate: "text-muted border-transparent",
-};
-
-// Tech icon mapping for work experience
-const techIcons: Record<string, string> = {
-  Kotlin:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-  "Spring Boot":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-  TypeScript:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-  "Node.js":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  React:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  "Next.js":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-  Hono: "hono",
-  AWS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-  "Google Cloud":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
-  Cloudflare:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cloudflare/cloudflare-original.svg",
-  Terraform:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
-  Nuxt: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg",
-  "Vue.js":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-  GraphQL:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
-  Python:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  Firebase:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-  Angular:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
-  DynamoDB:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dynamodb/dynamodb-original.svg",
-  ".NET Framework":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
-  "ASP.NET":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg",
-  "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
-  "SQL Server":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
-  "Ionic Framework":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
-  Lambda:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-  "VB.NET":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualbasic/visualbasic-original.svg",
-  "AWS IoT Greengrass":
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
-  Rust: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg",
-  JavaScript:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-  Scala:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg",
-};
-
-type Project = {
-  title: string;
-  description: string;
-  techStack: string[];
-};
+const levels: Level[] = ["Expert", "Advanced", "Intermediate"];
 
 type Position = {
   title: string;
   period: string;
   description: string;
-  projects?: Project[];
   techStack?: string[];
 };
 
@@ -210,14 +55,12 @@ type WorkExperience = {
   company: string;
   period?: string;
   positions: Position[];
-  isCurrent: boolean;
 };
 
 const workExperiences: WorkExperience[] = [
   {
     company: "クラスメソッド株式会社",
     period: "2019.04 — Present",
-    isCurrent: true,
     positions: [
       {
         title: "クラウド事業本部 サービス開発室",
@@ -255,7 +98,6 @@ const workExperiences: WorkExperience[] = [
   },
   {
     company: "業務委託（副業）",
-    isCurrent: false,
     positions: [
       {
         title: "人材系スタートアップ企業",
@@ -273,7 +115,6 @@ const workExperiences: WorkExperience[] = [
   },
   {
     company: "株式会社アドウイック",
-    isCurrent: false,
     period: "2014.04 — 2019.04",
     positions: [
       {
@@ -316,318 +157,128 @@ const certifications = {
 ---
 
 <Layout title="About | Naoya Sato" currentPage="about">
-  <main
-    class="mx-auto flex max-w-5xl flex-col gap-12 px-6 pb-20 pt-28 lg:flex-row lg:items-start lg:gap-16"
-  >
-    <!-- Sticky profile sidebar -->
-    <aside class="lg:sticky lg:top-28 lg:h-fit lg:w-72 lg:shrink-0">
-      <div class="flex flex-col gap-6">
-        <div class="flex items-center gap-4 lg:flex-col lg:items-start">
-          <div
-            class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand text-xl font-extrabold tracking-tight text-white shadow-[0_4px_16px_rgba(176,137,104,0.35)]"
-          >
-            NS
-          </div>
-          <div>
-            <h1
-              class="text-2xl font-extrabold leading-tight tracking-tight text-ink"
-            >
-              Naoya Sato
-            </h1>
-            <p class="mt-1 text-sm leading-snug text-muted">
-              Software Engineer<br />at Classmethod, Inc.
-            </p>
-          </div>
-        </div>
-
-        <p class="text-sm leading-relaxed text-muted">
-          Specializing in cloud-native web application development. Experienced
-          in every phase from contract development to in-house product creation.
-        </p>
-
-        <div class="flex flex-wrap gap-2">
-          {
-            heroLinks.map(({ href, label, icon: Icon, iconSrc }) => (
+  <main class="flex-1 pb-12">
+    <section class="py-10">
+      <h1 class="text-2xl font-semibold tracking-tight">Naoya Sato</h1>
+      <p class="mt-1 text-muted">Software Engineer at Classmethod, Inc.</p>
+      <p class="mt-6 leading-relaxed">
+        Specializing in cloud-native web application development. Experienced in
+        every phase from contract development to in-house product creation.
+      </p>
+      <ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        {
+          links.map(link => (
+            <li>
               <a
-                href={href}
-                target="_blank"
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                class="flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-bold text-ink transition-all hover:border-brand hover:bg-brand hover:text-white"
+                class="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
               >
-                {Icon ? (
-                  <Icon size={14} />
-                ) : iconSrc ? (
-                  <img
-                    src={typeof iconSrc === "string" ? iconSrc : iconSrc.src}
-                    alt={label}
-                    class="h-3.5 w-3.5"
-                  />
-                ) : null}
-                {label}
+                {link.label}
               </a>
-            ))
-          }
-        </div>
-
-        <nav
-          class="hidden border-t border-line pt-5 text-sm font-medium lg:flex lg:flex-col lg:gap-2"
-        >
-          <a
-            href="#certifications"
-            class="text-muted transition-colors hover:text-brand"
-          >
-            Certifications
-          </a>
-          <a
-            href="#skills"
-            class="text-muted transition-colors hover:text-brand"
-          >
-            Skills
-          </a>
-          <a
-            href="#work"
-            class="text-muted transition-colors hover:text-brand"
-          >
-            Work
-          </a>
-        </nav>
-      </div>
-    </aside>
-
-    <!-- Scrollable content -->
-    <div class="min-w-0 flex-1 space-y-16">
-      <section id="certifications" class="max-w-none px-0">
-        <div
-          class="rounded-2xl border border-line bg-surface p-6 shadow-[0_1px_2px_rgba(80,60,40,0.04)]"
-        >
-        <div class="mb-6 flex items-center gap-2 text-brand">
-          <Award size={20} />
-          <h2 class="text-lg font-bold text-ink">Certifications</h2>
-        </div>
-
-        <div class="space-y-8">
-          <div>
-            <h3 class="mb-3 text-sm font-bold text-ink">
-              {certifications.ipa.title}
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              {
-                certifications.ipa.certs.map(cert => (
-                  <span class="rounded-md border border-line bg-paper px-2.5 py-1.5 text-[10px] font-medium text-muted">
-                    {cert}
-                  </span>
-                ))
-              }
-            </div>
-          </div>
-
-          <div>
-            <div class="mb-3 flex items-center justify-between">
-              <h3 class="text-sm font-bold text-ink">
-                {certifications.aws.title}
-              </h3>
-            </div>
-
-            <div class="mb-4 space-y-1">
-              {
-                certifications.aws.awards.map(award => (
-                  <p class="text-xs text-muted">
-                    <span class="font-bold text-ink">{award.name}</span> (
-                    {award.period})
-                  </p>
-                ))
-              }
-            </div>
-            <div class="flex flex-wrap gap-2">
-              {
-                certifications.aws.certs.map(cert => (
-                  <span class="rounded-md border border-line bg-paper px-2.5 py-1.5 text-[10px] font-medium text-muted">
-                    AWS Certified {cert}
-                  </span>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      </div>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
-    <section id="skills" class="max-w-none px-0">
-      <h2 class="mb-6 text-xs font-bold uppercase tracking-widest text-brand">
-        Skills
-      </h2>
-      <div class="grid items-start gap-4 sm:grid-cols-2">
-        <div
-          class="rounded-2xl border border-line bg-surface p-5 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]"
-        >
-          <div class="mb-4 flex items-center gap-2 border-b border-line pb-2">
-            <Cloud size={16} class="text-brand" />
-            <h3 class="text-sm font-bold text-ink">Cloud & Infrastructure</h3>
-          </div>
-          <div class="space-y-3">
-            {
-              techStack.cloud.map(tech => (
-                <div class="flex items-center justify-between text-xs">
-                  <div class="flex items-center gap-3">
-                    <img
-                      src={tech.icon}
-                      alt={tech.name}
-                      class="h-5 w-5 object-contain"
-                      loading="lazy"
-                      width="20"
-                      height="20"
-                    />
-                    <span class="font-mono font-medium text-ink">
-                      {tech.name}
-                    </span>
-                  </div>
-                  <span
-                    class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}
-                  >
-                    {tech.level}
-                  </span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div
-          class="rounded-2xl border border-line bg-surface p-5 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]"
-        >
-          <div class="mb-4 flex items-center gap-2 border-b border-line pb-2">
-            <Code size={16} class="text-brand" />
-            <h3 class="text-sm font-bold text-ink">Languages & Frameworks</h3>
-          </div>
-          <div class="space-y-3">
-            {
-              techStack.languages.map(tech => (
-                <div class="flex items-center justify-between text-xs">
-                  <div class="flex items-center gap-3">
-                    {tech.icon === "hono" ? (
-                      <span class="flex h-5 w-5 items-center justify-center text-orange-500">
-                        <Flame size={18} />
-                      </span>
-                    ) : (
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        class="h-5 w-5 object-contain"
-                        loading="lazy"
-                        width="20"
-                        height="20"
-                      />
-                    )}
-                    <span class="font-mono font-medium text-ink">
-                      {tech.name}
-                    </span>
-                  </div>
-                  <span
-                    class={`rounded border px-1.5 py-0.5 text-[10px] ${levelStyles[tech.level as Level]}`}
-                  >
-                    {tech.level}
-                  </span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="work" class="max-w-none px-0">
-      <h2 class="mb-8 text-xs font-bold uppercase tracking-widest text-brand">
-        Work
-      </h2>
-      <div class="ml-2 space-y-12 border-l border-line">
+    <section class="border-t border-line py-10">
+      <h2 class="mb-6 text-sm font-semibold text-muted">Work</h2>
+      <div class="space-y-10">
         {
           workExperiences.map(exp => (
-            <div class="relative pl-6">
-              <span
-                class={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full border border-paper ${exp.isCurrent ? "bg-brand" : "bg-muted"}`}
-              />
-              {exp.period ? (
-                <div class="mb-6">
-                  <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
-                    <h3 class="text-base font-bold text-ink">{exp.company}</h3>
-                    <span class="font-mono text-xs text-muted">
-                      {exp.period}
-                    </span>
-                  </div>
-                </div>
-              ) : (
-                <h3 class="mb-4 text-sm font-bold text-ink">{exp.company}</h3>
-              )}
-              <div class="grid gap-6">
+            <div>
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                <h3 class="font-semibold">{exp.company}</h3>
+                {exp.period && (
+                  <span class="font-mono text-xs text-muted">{exp.period}</span>
+                )}
+              </div>
+              <ul class="mt-4 space-y-5">
                 {exp.positions.map(pos => (
-                  <div class="rounded-2xl border border-line bg-surface p-5 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]">
-                    <div class={`mb-2 flex items-start justify-between`}>
-                      <h4 class="text-xs font-bold text-ink">{pos.title}</h4>
-                      <span class="font-mono text-[10px] text-muted">
+                  <li>
+                    <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                      <p class="text-sm font-medium">{pos.title}</p>
+                      <span class="font-mono text-xs text-muted">
                         {pos.period}
                       </span>
                     </div>
-                    <p
-                      class={`text-xs text-muted ${pos.projects ? "mb-5 leading-relaxed" : "mb-2"}`}
-                    >
+                    <p class="mt-1 text-sm leading-relaxed text-muted">
                       {pos.description}
                     </p>
-                    {pos.projects && (
-                      <div class="space-y-5 text-muted">
-                        {pos.projects.map(project => (
-                          <div>
-                            <h5 class="text-[11px] font-bold text-ink">
-                              {project.title}
-                            </h5>
-                            <p class="mb-2 text-[10px] text-muted">
-                              {project.description}
-                            </p>
-                            <div class="flex flex-wrap gap-1.5">
-                              {project.techStack.map(tech => (
-                                <span class="inline-flex items-center gap-1 rounded-full bg-paper py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-muted">
-                                  {techIcons[tech] === "hono" ? (
-                                    <Flame size={10} class="text-orange-500" />
-                                  ) : techIcons[tech] ? (
-                                    <img
-                                      src={techIcons[tech]}
-                                      alt={tech}
-                                      class="h-3 w-3"
-                                    />
-                                  ) : null}
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                    {pos.techStack && (
+                      <p class="mt-1.5 text-xs text-muted">
+                        {pos.techStack.join(" · ")}
+                      </p>
                     )}
-                    {pos.techStack && !pos.projects && (
-                      <div class="flex flex-wrap gap-1.5 border-t border-line pt-3">
-                        {pos.techStack.map(tech => (
-                          <span class="inline-flex items-center gap-1 rounded-full bg-paper py-0.5 pl-1 pr-2 font-mono text-[9px] font-medium text-muted">
-                            {techIcons[tech] === "hono" ? (
-                              <Flame size={10} class="text-orange-500" />
-                            ) : techIcons[tech] ? (
-                              <img
-                                src={techIcons[tech]}
-                                alt={tech}
-                                class="h-3 w-3"
-                              />
-                            ) : null}
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))
         }
       </div>
-      </section>
-    </div>
+    </section>
+
+    <section class="border-t border-line py-10">
+      <h2 class="mb-6 text-sm font-semibold text-muted">Skills</h2>
+      <div class="space-y-6">
+        {
+          skills.map(group => (
+            <div>
+              <h3 class="mb-2 text-sm font-medium">{group.category}</h3>
+              <dl class="space-y-1 text-sm">
+                {levels.map(level => {
+                  const names = group.items
+                    .filter(item => item.level === level)
+                    .map(item => item.name);
+                  return names.length > 0 ? (
+                    <div class="flex gap-4">
+                      <dt class="w-24 shrink-0 text-muted">{level}</dt>
+                      <dd>{names.join(", ")}</dd>
+                    </div>
+                  ) : null;
+                })}
+              </dl>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="border-t border-line py-10">
+      <h2 class="mb-6 text-sm font-semibold text-muted">Certifications</h2>
+      <div class="space-y-6 text-sm">
+        <div>
+          <h3 class="mb-2 font-medium">{certifications.aws.title}</h3>
+          <ul class="mb-3 space-y-1">
+            {
+              certifications.aws.awards.map(award => (
+                <li>
+                  {award.name}
+                  <span class="ml-2 font-mono text-xs text-muted">
+                    {award.period}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+          <ul class="space-y-1 text-muted">
+            {
+              certifications.aws.certs.map(cert => (
+                <li>AWS Certified {cert}</li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-2 font-medium">{certifications.ipa.title}</h3>
+          <ul class="space-y-1 text-muted">
+            {certifications.ipa.certs.map(cert => <li>{cert}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>

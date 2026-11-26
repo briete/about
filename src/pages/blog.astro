@@ -1,6 +1,5 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { Rss } from "@lucide/astro";
 import { build, getHostFromURL } from "@utils/builder";
 import dayjs from "dayjs";
 
@@ -21,12 +20,12 @@ const postsByYear = posts.reduce(
 
 const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 
-const getIconForHost = (url: string) => {
+const sourceLabel = (url: string) => {
   const host = getHostFromURL(url);
-  if (host.includes("zenn.dev")) return "zenn";
-  if (host.includes("dev.classmethod.jp")) return "devio";
-  if (host.includes("speakerdeck")) return "speakerdeck";
-  return "default";
+  if (host.includes("zenn.dev")) return "Zenn";
+  if (host.includes("dev.classmethod.jp")) return "DevelopersIO";
+  if (host.includes("speakerdeck")) return "SpeakerDeck";
+  return host;
 };
 ---
 
@@ -35,107 +34,42 @@ const getIconForHost = (url: string) => {
   description="brieteの技術ブログ・登壇資料一覧。Zenn、DevelopersIO、SpeakerDeckでの発信をまとめています。"
   currentPage="blog"
 >
-  <main class="mx-auto max-w-2xl px-6 pb-20 pt-28">
-    <section class="mb-16 max-w-none px-0">
-      <div class="mb-8 flex items-center gap-3">
-        <div class="rounded-lg bg-line p-2">
-          <Rss size={20} class="text-brand" />
-        </div>
-        <div>
-          <h1 class="text-2xl font-extrabold tracking-tight text-ink">
-            Blog & Slides
-          </h1>
-          <p class="text-xs text-muted">技術ブログ・登壇資料</p>
-        </div>
-      </div>
-      <div class="mb-6 flex flex-wrap gap-2">
-        <span
-          class="flex items-center gap-1.5 rounded-full border border-line px-3 py-1 text-[10px] font-medium text-muted"
-        >
-          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-          Zenn
-        </span>
-        <span
-          class="flex items-center gap-1.5 rounded-full border border-line px-3 py-1 text-[10px] font-medium text-muted"
-        >
-          <span class="h-2 w-2 rounded-full bg-orange-500"></span>
-          DevelopersIO
-        </span>
-        <span
-          class="flex items-center gap-1.5 rounded-full border border-line px-3 py-1 text-[10px] font-medium text-muted"
-        >
-          <span class="h-2 w-2 rounded-full bg-sky-500"></span>
-          SpeakerDeck
-        </span>
-      </div>
+  <main class="flex-1 pb-12">
+    <section class="py-10">
+      <h1 class="text-2xl font-semibold tracking-tight">Blog & Slides</h1>
+      <p class="mt-1 text-muted">技術ブログ・登壇資料</p>
     </section>
 
-    <section class="max-w-none px-0">
-      <div class="ml-2 space-y-10 border-l border-line">
-        {
-          years.map((year, yearIndex) => (
-            <div class="relative pl-6">
-              <span
-                class={`absolute -left-[5px] top-1 h-2.5 w-2.5 rounded-full border border-paper ${
-                  yearIndex === 0 ? "bg-brand" : "bg-muted"
-                }`}
-              />
-              <div class="mb-4 flex items-center gap-2">
-                <h2 class="font-mono text-sm font-bold text-ink">{year}</h2>
-                <span class="font-mono text-[10px] text-muted">
-                  {postsByYear[year].length} posts
-                </span>
-              </div>
-              <div class="space-y-3">
-                {postsByYear[year].map(post => {
-                  const iconType = getIconForHost(post.url);
-                  return (
-                    <a
-                      href={post.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="group block rounded-2xl border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(80,60,40,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(120,90,60,0.12)]"
-                    >
-                      <h3 class="mb-2 text-sm font-medium leading-snug text-ink group-hover:text-brand">
-                        {post.title}
-                      </h3>
-                      <div class="flex items-center gap-3 text-[10px]">
-                        <span class="font-mono text-muted">
-                          {dayjs(post.date).format("MM.DD")}
-                        </span>
-                        <span
-                          class={`flex items-center gap-1 ${
-                            iconType === "zenn"
-                              ? "text-emerald-600 dark:text-emerald-500"
-                              : iconType === "devio"
-                                ? "text-orange-600 dark:text-orange-500"
-                                : iconType === "speakerdeck"
-                                  ? "text-sky-600 dark:text-sky-500"
-                                  : "text-muted"
-                          }`}
-                        >
-                          <span
-                            class={`h-1.5 w-1.5 rounded-full ${
-                              iconType === "zenn"
-                                ? "bg-emerald-500"
-                                : iconType === "devio"
-                                  ? "bg-orange-500"
-                                  : iconType === "speakerdeck"
-                                    ? "bg-sky-500"
-                                    : "bg-muted"
-                            }`}
-                          />
-                          {getHostFromURL(post.url)}
-                        </span>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </section>
+    {
+      years.map(year => (
+        <section class="border-t border-line py-8">
+          <h2 class="mb-4 font-mono text-sm text-muted">{year}</h2>
+          <ul class="space-y-4">
+            {postsByYear[year].map(post => (
+              <li>
+                <a
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex gap-4"
+                >
+                  <span class="w-12 shrink-0 pt-0.5 font-mono text-xs text-muted">
+                    {dayjs(post.date).format("MM.DD")}
+                  </span>
+                  <span>
+                    <span class="leading-snug underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-ink">
+                      {post.title}
+                    </span>
+                    <span class="mt-0.5 block text-xs text-muted">
+                      {sourceLabel(post.url)}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
   </main>
 </Layout>
