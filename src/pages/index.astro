@@ -54,8 +54,6 @@ const axisYears = Array.from({ length: axisSpan + 1 }, (_, i) => axisStart + i);
 const pos = (year: number) => `${((year - axisStart) / axisSpan) * 100}%`;
 
 type Position = {
-  // Shown only for client engagements; department names are omitted.
-  title?: string;
   period: string;
   description: string;
   techStack?: string[];
@@ -105,16 +103,21 @@ const workExperiences: WorkExperience[] = [
     ],
   },
   {
-    company: "業務委託（副業）",
+    company: "人材系スタートアップ企業",
+    period: "2024.07 — 2026.05",
     positions: [
       {
-        title: "人材系スタートアップ企業",
         period: "2024.07 — 2026.05",
         description: "業務委託として自社プロダクトの開発を担当していました。",
         techStack: ["Cloudflare", "Hono", "Next.js", "React", "TypeScript"],
       },
+    ],
+  },
+  {
+    company: "Contrea株式会社",
+    period: "2023.06 — Present",
+    positions: [
       {
-        title: "Contrea株式会社",
         period: "2023.06 — Present",
         description: "業務委託として自社プロダクトの開発を担当しています。",
         techStack: ["Google Cloud", "Firebase", "Nuxt", "Vue.js", "TypeScript"],
@@ -186,9 +189,6 @@ const certifications: {
                   <li>
                     {pos.period !== exp.period && (
                       <p class="font-mono text-xs text-muted">{pos.period}</p>
-                    )}
-                    {pos.title && (
-                      <p class="mt-1 text-sm font-medium">{pos.title}</p>
                     )}
                     <p class="mt-1 text-sm leading-relaxed">
                       {pos.description}
