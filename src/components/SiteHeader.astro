@@ -1,0 +1,35 @@
+---
+export interface Props {
+  // Render the site name as the page's h1 (top page only).
+  asHeading?: boolean;
+}
+
+const { asHeading = false } = Astro.props;
+const Name = asHeading ? "h1" : "p";
+
+const links = [
+  { href: "https://github.com/briete", label: "GitHub" },
+  { href: "https://zenn.dev/briete", label: "Zenn" },
+  { href: "mailto:contact@briete.me", label: "Email" },
+];
+---
+
+<header class="flex items-center justify-between py-8 text-sm">
+  <Name class="font-semibold">
+    <a href="/" class="hover:opacity-60">briete</a>
+  </Name>
+  <nav class="flex items-center gap-5 text-muted">
+    {
+      links.map(link => (
+        <a
+          href={link.href}
+          target={link.href.startsWith("http") ? "_blank" : undefined}
+          rel="noopener noreferrer"
+          class="transition-colors hover:text-ink"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

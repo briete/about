@@ -1,5 +1,6 @@
 ---
 import PostList from "@components/PostList.astro";
+import SiteHeader from "@components/SiteHeader.astro";
 import Layout from "@layouts/Layout.astro";
 import { build } from "@utils/builder";
 import dayjs from "dayjs";
@@ -23,18 +24,13 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 ---
 
 <Layout
-  title="Blog | Naoya Sato"
+  title="Blog | briete"
   description="brieteの技術ブログ・登壇資料一覧。Zenn、DevelopersIO、SpeakerDeckでの発信をまとめています。"
 >
+  <SiteHeader />
   <main class="flex-1 pb-12">
-    <section class="pb-10 pt-16">
-      <a
-        href="/"
-        class="text-sm text-muted transition-colors hover:text-ink"
-      >
-        ← Home
-      </a>
-      <h1 class="mt-6 text-2xl font-semibold tracking-tight">Blog & Slides</h1>
+    <section class="pb-10 pt-4">
+      <h1 class="text-2xl font-semibold tracking-tight">Blog & Slides</h1>
       <p class="mt-1 text-muted">技術ブログ・登壇資料</p>
     </section>
 

@@ -1,15 +1,11 @@
 ---
 import PostList from "@components/PostList.astro";
+import SiteHeader from "@components/SiteHeader.astro";
 import Layout from "@layouts/Layout.astro";
 import { build } from "@utils/builder";
 
 const recentPosts = (await build()).slice(0, 5);
 
-const links = [
-  { href: "https://github.com/briete", label: "GitHub" },
-  { href: "https://zenn.dev/briete", label: "Zenn" },
-  { href: "mailto:contact@briete.me", label: "Email" },
-];
 
 // Experience is stored as a start year so the years shown stay correct over time.
 const currentYear = new Date().getFullYear();
@@ -167,29 +163,11 @@ const certifications = {
 };
 ---
 
-<Layout title="About | Naoya Sato">
+<Layout title="briete">
+  <SiteHeader asHeading />
   <main class="flex-1 pb-12">
-    <section class="pb-10 pt-16">
-      <h1 class="text-2xl font-semibold tracking-tight">Naoya Sato</h1>
-      <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-        {
-          links.map(link => (
-            <li>
-              <a
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                class="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
 
-    <section class="border-t border-line py-10">
+    <section class="pb-10 pt-4">
       <h2 class="mb-6 text-sm font-semibold text-muted">Blog</h2>
       <PostList posts={recentPosts} />
       <a
