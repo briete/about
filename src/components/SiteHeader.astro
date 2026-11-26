@@ -14,11 +14,14 @@ const links = [
 ];
 ---
 
-<header class="flex items-center justify-between py-8 text-sm">
-  <Name class="text-2xl font-semibold tracking-tight">
-    <a href="/" class="hover:opacity-60">briete</a>
-  </Name>
-  <nav class="flex items-center gap-5 text-muted">
+<header class="flex items-start justify-between py-8 text-sm">
+  <div>
+    <Name class="text-2xl font-semibold tracking-tight">
+      <a href="/" class="hover:opacity-60">briete</a>
+    </Name>
+    <p class="mt-0.5 text-sm text-muted">ソフトウェアエンジニア</p>
+  </div>
+  <nav class="flex items-center gap-5 pt-2 text-muted">
     {
       links.map(link => (
         <a

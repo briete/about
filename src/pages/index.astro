@@ -135,29 +135,19 @@ const workExperiences: WorkExperience[] = [
 ];
 
 const certifications = {
+  aws: {
+    title: "AWS認定",
+    awards: [
+      { name: "Japan AWS All Certifications Engineer", period: "2022-2026" },
+      { name: "APN AWS Top Engineer", period: "2021" },
+    ],
+  },
   ipa: {
-    title: "情報処理技術者試験",
+    title: "IPA情報処理技術者試験",
     certs: [
       "データベーススペシャリスト試験",
       "応用情報技術者試験",
       "基本情報技術者試験",
-    ],
-  },
-  aws: {
-    title: "AWS認定資格",
-    awards: [
-      { name: "Japan AWS All Certifications Engineer", period: "2022-2025" },
-      { name: "APN AWS Top Engineer", period: "2021" },
-    ],
-    certs: [
-      "Solutions Architect - Professional",
-      "DevOps Engineer - Professional",
-      "Security - Specialty",
-      "Advanced Networking - Specialty",
-      "Data Engineer – Associate",
-      "Machine Learning - Specialty",
-      "Machine Learning Engineer - Associate",
-      "AI - Practitioner",
     ],
   },
 };
@@ -278,8 +268,8 @@ const certifications = {
       <h2 class="mb-6 text-sm font-semibold text-muted">Certifications</h2>
       <div class="space-y-6 text-sm">
         <div>
-          <h3 class="mb-2 font-medium">{certifications.aws.title}</h3>
-          <ul class="mb-3 space-y-1">
+          <h3 class="mb-2 text-xs font-medium text-muted">{certifications.aws.title}</h3>
+          <ul class="space-y-1">
             {
               certifications.aws.awards.map(award => (
                 <li>
@@ -291,17 +281,10 @@ const certifications = {
               ))
             }
           </ul>
-          <ul class="space-y-1 text-muted">
-            {
-              certifications.aws.certs.map(cert => (
-                <li>AWS Certified {cert}</li>
-              ))
-            }
-          </ul>
         </div>
         <div>
-          <h3 class="mb-2 font-medium">{certifications.ipa.title}</h3>
-          <ul class="space-y-1 text-muted">
+          <h3 class="mb-2 text-xs font-medium text-muted">{certifications.ipa.title}</h3>
+          <ul class="space-y-1">
             {certifications.ipa.certs.map(cert => <li>{cert}</li>)}
           </ul>
         </div>
