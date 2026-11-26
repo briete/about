@@ -42,8 +42,6 @@ const skills: { category: string; items: { name: string; since: number }[] }[] =
     },
   ];
 
-const otherSkills = ["C#", "Hono"];
-
 // Chart axis: from the earliest start year to the current year, so each
 // bar's length is exactly its years of experience.
 const axisStart = Math.min(
@@ -273,10 +271,6 @@ const certifications: {
           ))
         }
       </div>
-
-      <p class="mt-6 text-xs text-muted">
-        その他: {otherSkills.join(", ")}
-      </p>
     </section>
 
     <section class="border-t border-line py-10">
