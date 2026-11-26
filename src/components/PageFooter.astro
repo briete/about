@@ -1,7 +1,18 @@
 ---
+import { Moon, Sun } from "@lucide/astro";
+
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-auto py-10 text-xs text-muted">
-  &copy; {currentYear} Naoya Sato
+<footer class="mt-auto flex items-center justify-between py-10 text-xs text-muted">
+  <span>&copy; {currentYear} Naoya Sato</span>
+  <button
+    type="button"
+    id="theme-btn"
+    class="-mr-1 p-1 transition-colors hover:text-ink"
+    aria-label="Toggle theme"
+  >
+    <Sun size={16} id="sun-svg" />
+    <Moon size={16} id="moon-svg" />
+  </button>
 </footer>

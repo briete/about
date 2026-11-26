@@ -1,6 +1,7 @@
 ---
+import PostList from "@components/PostList.astro";
 import Layout from "@layouts/Layout.astro";
-import { build, getHostFromURL } from "@utils/builder";
+import { build } from "@utils/builder";
 import dayjs from "dayjs";
 
 const posts = await build();
@@ -19,24 +20,21 @@ const postsByYear = posts.reduce(
 );
 
 const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
-
-const sourceLabel = (url: string) => {
-  const host = getHostFromURL(url);
-  if (host.includes("zenn.dev")) return "Zenn";
-  if (host.includes("dev.classmethod.jp")) return "DevelopersIO";
-  if (host.includes("speakerdeck")) return "SpeakerDeck";
-  return host;
-};
 ---
 
 <Layout
   title="Blog | Naoya Sato"
   description="brieteの技術ブログ・登壇資料一覧。Zenn、DevelopersIO、SpeakerDeckでの発信をまとめています。"
-  currentPage="blog"
 >
   <main class="flex-1 pb-12">
-    <section class="py-10">
-      <h1 class="text-2xl font-semibold tracking-tight">Blog & Slides</h1>
+    <section class="pb-10 pt-16">
+      <a
+        href="/"
+        class="text-sm text-muted transition-colors hover:text-ink"
+      >
+        ← Home
+      </a>
+      <h1 class="mt-6 text-2xl font-semibold tracking-tight">Blog & Slides</h1>
       <p class="mt-1 text-muted">技術ブログ・登壇資料</p>
     </section>
 
@@ -44,30 +42,7 @@ const sourceLabel = (url: string) => {
       years.map(year => (
         <section class="border-t border-line py-8">
           <h2 class="mb-4 font-mono text-sm text-muted">{year}</h2>
-          <ul class="space-y-4">
-            {postsByYear[year].map(post => (
-              <li>
-                <a
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group flex gap-4"
-                >
-                  <span class="w-12 shrink-0 pt-0.5 font-mono text-xs text-muted">
-                    {dayjs(post.date).format("MM.DD")}
-                  </span>
-                  <span>
-                    <span class="leading-snug underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-ink">
-                      {post.title}
-                    </span>
-                    <span class="mt-0.5 block text-xs text-muted">
-                      {sourceLabel(post.url)}
-                    </span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <PostList posts={postsByYear[year]} dateFormat="MM.DD" />
         </section>
       ))
     }

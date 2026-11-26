@@ -111,3 +111,11 @@ export function getHostFromURL(url: string) {
   const urlObj = new URL(url);
   return urlObj.hostname;
 }
+
+export function getSourceLabel(url: string) {
+  const host = getHostFromURL(url);
+  if (host.includes("zenn.dev")) return "Zenn";
+  if (host.includes("dev.classmethod.jp")) return "DevelopersIO";
+  if (host.includes("speakerdeck")) return "SpeakerDeck";
+  return host;
+}

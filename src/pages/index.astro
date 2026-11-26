@@ -1,5 +1,9 @@
 ---
+import PostList from "@components/PostList.astro";
 import Layout from "@layouts/Layout.astro";
+import { build } from "@utils/builder";
+
+const recentPosts = (await build()).slice(0, 5);
 
 const links = [
   { href: "https://github.com/briete", label: "GitHub" },
@@ -163,9 +167,9 @@ const certifications = {
 };
 ---
 
-<Layout title="About | Naoya Sato" currentPage="about">
+<Layout title="About | Naoya Sato">
   <main class="flex-1 pb-12">
-    <section class="py-10">
+    <section class="pb-10 pt-16">
       <h1 class="text-2xl font-semibold tracking-tight">Naoya Sato</h1>
       <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
         {
@@ -183,6 +187,17 @@ const certifications = {
           ))
         }
       </ul>
+    </section>
+
+    <section class="border-t border-line py-10">
+      <h2 class="mb-6 text-sm font-semibold text-muted">Blog</h2>
+      <PostList posts={recentPosts} />
+      <a
+        href="/blog"
+        class="mt-6 inline-block text-sm underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+      >
+        すべての記事を見る →
+      </a>
     </section>
 
     <section class="border-t border-line py-10">
