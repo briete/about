@@ -10,12 +10,12 @@ const Name = asHeading ? "h1" : "p";
 const links = [
   { href: "https://github.com/briete", label: "GitHub" },
   { href: "https://zenn.dev/briete", label: "Zenn" },
-  { href: "mailto:contact@briete.me", label: "Email" },
+  { href: "https://x.com/briete_ns", label: "X" },
 ];
 ---
 
 <header class="flex items-center justify-between py-8 text-sm">
-  <Name class="font-semibold">
+  <Name class="text-2xl font-semibold tracking-tight">
     <a href="/" class="hover:opacity-60">briete</a>
   </Name>
   <nav class="flex items-center gap-5 text-muted">
@@ -23,7 +23,7 @@ const links = [
       links.map(link => (
         <a
           href={link.href}
-          target={link.href.startsWith("http") ? "_blank" : undefined}
+          target="_blank"
           rel="noopener noreferrer"
           class="transition-colors hover:text-ink"
         >
