@@ -134,23 +134,34 @@ const workExperiences: WorkExperience[] = [
   },
 ];
 
-const certifications = {
-  aws: {
-    title: "AWS認定",
-    awards: [
+const certifications: {
+  title: string;
+  items: { name: string; period?: string }[];
+}[] = [
+  {
+    title: "IPA情報処理技術者試験",
+    items: [
+      { name: "データベーススペシャリスト試験" },
+      { name: "応用情報技術者試験" },
+      { name: "基本情報技術者試験" },
+    ],
+  },
+  {
+    title: "Claude認定試験",
+    items: [
+      { name: "Claude Certified Architect – Professional" },
+      { name: "Claude Certified Developer – Professional" },
+      { name: "Claude Certified Developer – Foundations" },
+    ],
+  },
+  {
+    title: "AWS認定試験",
+    items: [
       { name: "Japan AWS All Certifications Engineer", period: "2022-2026" },
       { name: "APN AWS Top Engineer", period: "2021" },
     ],
   },
-  ipa: {
-    title: "IPA情報処理技術者試験",
-    certs: [
-      "データベーススペシャリスト試験",
-      "応用情報技術者試験",
-      "基本情報技術者試験",
-    ],
-  },
-};
+];
 ---
 
 <Layout title="briete">
@@ -267,27 +278,27 @@ const certifications = {
     <section class="border-t border-line py-10">
       <h2 class="mb-6 text-sm font-semibold text-muted">Certifications</h2>
       <div class="space-y-6 text-sm">
-        <div>
-          <h3 class="mb-2 text-xs font-medium text-muted">{certifications.aws.title}</h3>
-          <ul class="space-y-1">
-            {
-              certifications.aws.awards.map(award => (
-                <li>
-                  {award.name}
-                  <span class="ml-2 font-mono text-xs text-muted">
-                    {award.period}
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-        <div>
-          <h3 class="mb-2 text-xs font-medium text-muted">{certifications.ipa.title}</h3>
-          <ul class="space-y-1">
-            {certifications.ipa.certs.map(cert => <li>{cert}</li>)}
-          </ul>
-        </div>
+        {
+          certifications.map(group => (
+            <div>
+              <h3 class="mb-2 text-xs font-medium text-muted">
+                {group.title}
+              </h3>
+              <ul class="space-y-1">
+                {group.items.map(item => (
+                  <li>
+                    {item.name}
+                    {item.period && (
+                      <span class="ml-2 font-mono text-xs text-muted">
+                        {item.period}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </div>
     </section>
 
