@@ -1,43 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import PageFooter from "@components/PageFooter.astro";
 ---
 
-<Layout
-  title="404 Not Found | briete.dev"
-  description="ページが見つかりませんでした"
->
-  <main id="main-content">
-    <div class="not-found-wrapper">
-      <h1 aria-label="404 Not Found">404</h1>
-      <span aria-hidden="true">¯\_(ツ)_/¯</span>
-      <p>Page Not Found</p>
-      <a
-        href="/"
-        class="my-6 text-lg underline decoration-dashed underline-offset-8 hover:opacity-70"
-      >
-        Go back home
-      </a>
-    </div>
+<Layout title="404 Not Found | briete.me" description="ページが見つかりませんでした">
+  <main class="flex flex-1 flex-col items-start justify-center py-20">
+    <h1 class="font-mono text-5xl font-semibold">404</h1>
+    <p class="mt-3 text-muted">Page Not Found</p>
+    <a
+      href="/"
+      class="mt-8 text-sm underline decoration-line underline-offset-4 hover:decoration-ink"
+    >
+      ← Back to home
+    </a>
   </main>
-
-  <PageFooter />
 </Layout>
-
-<style>
-  @reference "tailwindcss";
-
-  #main-content {
-    @apply mx-auto flex max-w-3xl flex-1 items-center justify-center pt-28;
-  }
-  .not-found-wrapper {
-    @apply mb-14 flex flex-col items-center justify-center;
-  }
-  .not-found-wrapper h1 {
-    @apply text-9xl font-bold;
-    color: rgb(var(--color-accent));
-  }
-  .not-found-wrapper p {
-    @apply mt-4 text-2xl sm:text-3xl;
-  }
-</style>
