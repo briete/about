@@ -1,48 +1,57 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-type Level = "Expert" | "Advanced" | "Intermediate";
-
 const links = [
   { href: "https://github.com/briete", label: "GitHub" },
   { href: "https://zenn.dev/briete", label: "Zenn" },
   { href: "mailto:contact@briete.me", label: "Email" },
 ];
 
-const skills: { category: string; items: { name: string; level: Level }[] }[] =
+// Experience is stored as a start year so the years shown stay correct over time.
+const currentYear = new Date().getFullYear();
+const since = (years: number) => 2026 - years;
+
+const skills: { category: string; items: { name: string; since: number }[] }[] =
   [
     {
       category: "Cloud & Infrastructure",
       items: [
-        { name: "AWS", level: "Expert" },
-        { name: "Terraform", level: "Advanced" },
-        { name: "Google Cloud", level: "Intermediate" },
-        { name: "Cloudflare", level: "Intermediate" },
+        { name: "AWS", since: since(8) },
+        { name: "Terraform", since: since(5) },
+        { name: "Google Cloud", since: since(2) },
+        { name: "Cloudflare", since: since(1) },
       ],
     },
     {
       category: "Languages & Frameworks",
       items: [
-        { name: "TypeScript", level: "Expert" },
-        { name: "JavaScript", level: "Expert" },
-        { name: "Node.js", level: "Expert" },
-        { name: "Kotlin", level: "Advanced" },
-        { name: "Java", level: "Advanced" },
-        { name: "Spring Boot", level: "Advanced" },
-        { name: "Rust", level: "Intermediate" },
-        { name: "Scala", level: "Intermediate" },
-        { name: "Python", level: "Intermediate" },
-        { name: "C#", level: "Intermediate" },
-        { name: "React", level: "Intermediate" },
-        { name: "Next.js", level: "Intermediate" },
-        { name: "Hono", level: "Intermediate" },
-        { name: "Vue.js", level: "Intermediate" },
-        { name: "Nuxt", level: "Intermediate" },
+        { name: "TypeScript", since: since(10) },
+        { name: "JavaScript", since: since(10) },
+        { name: "Node.js", since: since(10) },
+        { name: "React", since: since(5) },
+        { name: "Next.js", since: since(5) },
+        { name: "Kotlin", since: since(4) },
+        { name: "Java", since: since(4) },
+        { name: "Spring Boot", since: since(4) },
+        { name: "Python", since: since(3) },
+        { name: "Vue.js", since: since(3) },
+        { name: "Nuxt", since: since(3) },
+        { name: "Rust", since: since(1) },
+        { name: "Scala", since: since(1) },
       ],
     },
   ];
 
-const levels: Level[] = ["Expert", "Advanced", "Intermediate"];
+const otherSkills = ["C#", "Hono"];
+
+// Chart axis: from the earliest start year to the current year, so each
+// bar's length is exactly its years of experience.
+const axisStart = Math.min(
+  ...skills.flatMap(group => group.items.map(item => item.since))
+);
+const axisSpan = currentYear - axisStart;
+const axisYears = Array.from({ length: axisSpan + 1 }, (_, i) => axisStart + i);
+const pos = (year: number) => `${((year - axisStart) / axisSpan) * 100}%`;
 
 type Position = {
   title: string;
@@ -223,28 +232,70 @@ const certifications = {
 
     <section class="border-t border-line py-10">
       <h2 class="mb-6 text-sm font-semibold text-muted">Skills</h2>
-      <div class="space-y-6">
+
+      <!-- Year axis -->
+      <div class="flex items-end gap-3 text-[10px] text-muted sm:gap-4">
+        <div class="w-24 shrink-0 sm:w-28"></div>
+        <div class="relative h-4 flex-1 font-mono">
+          {
+            axisYears
+              .filter(year => year % 2 === 0)
+              .map(year => (
+                <span
+                  class="absolute bottom-0 -translate-x-1/2"
+                  style={`left: ${pos(year)}`}
+                >
+                  {year}
+                </span>
+              ))
+          }
+        </div>
+        <div class="w-8 shrink-0"></div>
+      </div>
+
+      <div class="mt-2 space-y-6">
         {
           skills.map(group => (
             <div>
-              <h3 class="mb-2 text-sm font-medium">{group.category}</h3>
-              <dl class="space-y-1 text-sm">
-                {levels.map(level => {
-                  const names = group.items
-                    .filter(item => item.level === level)
-                    .map(item => item.name);
-                  return names.length > 0 ? (
-                    <div class="flex gap-4">
-                      <dt class="w-24 shrink-0 text-muted">{level}</dt>
-                      <dd>{names.join(", ")}</dd>
-                    </div>
-                  ) : null;
+              <h3 class="mb-2 text-xs font-medium text-muted">
+                {group.category}
+              </h3>
+              <ul class="space-y-1.5">
+                {group.items.map(item => {
+                  const years = currentYear - item.since;
+                  return (
+                    <li class="flex items-center gap-3 text-sm sm:gap-4">
+                      <span class="w-24 shrink-0 truncate sm:w-28">
+                        {item.name}
+                      </span>
+                      <div class="relative h-5 flex-1">
+                        {axisYears.map(year => (
+                          <span
+                            class="absolute inset-y-0 w-px bg-line"
+                            style={`left: ${pos(year)}`}
+                          />
+                        ))}
+                        <span
+                          class="absolute inset-y-1.5 rounded-full bg-ink"
+                          style={`left: ${pos(item.since)}; right: 0`}
+                          title={`${item.name}: ${item.since} – present`}
+                        />
+                      </div>
+                      <span class="w-8 shrink-0 text-right font-mono text-xs text-muted">
+                        {years}年
+                      </span>
+                    </li>
+                  );
                 })}
-              </dl>
+              </ul>
             </div>
           ))
         }
       </div>
+
+      <p class="mt-6 text-xs text-muted">
+        その他: {otherSkills.join(", ")}
+      </p>
     </section>
 
     <section class="border-t border-line py-10">
