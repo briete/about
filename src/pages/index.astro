@@ -54,7 +54,8 @@ const axisYears = Array.from({ length: axisSpan + 1 }, (_, i) => axisStart + i);
 const pos = (year: number) => `${((year - axisStart) / axisSpan) * 100}%`;
 
 type Position = {
-  title: string;
+  // Shown only for client engagements; department names are omitted.
+  title?: string;
   period: string;
   description: string;
   techStack?: string[];
@@ -72,7 +73,6 @@ const workExperiences: WorkExperience[] = [
     period: "2019.04 — Present",
     positions: [
       {
-        title: "クラウド事業本部 サービス開発室",
         period: "2022.10 — Present",
         description: "自社サービスの設計、開発、保守を担当",
         techStack: [
@@ -88,7 +88,6 @@ const workExperiences: WorkExperience[] = [
         ],
       },
       {
-        title: "CX事業本部 MAD事業部",
         period: "2019.04 — 2022.09",
         description:
           "MAD (Modern Application Development)事業を通じて、顧客プロダクトのモダナイズや新規開発を担当。",
@@ -127,7 +126,6 @@ const workExperiences: WorkExperience[] = [
     period: "2014.04 — 2019.04",
     positions: [
       {
-        title: "一般事業部 開発課",
         period: "2014.04 — 2019.04",
         description: "受託開発や自社パッケージの販売管理システムの開発を担当",
         techStack: [".NET Framework", "VB.NET", "ASP.NET", "C#"],
@@ -202,13 +200,13 @@ const certifications = {
               <ul class="mt-4 space-y-5">
                 {exp.positions.map(pos => (
                   <li>
-                    <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-                      <p class="text-sm font-medium">{pos.title}</p>
-                      <span class="font-mono text-xs text-muted">
-                        {pos.period}
-                      </span>
-                    </div>
-                    <p class="mt-1 text-sm leading-relaxed text-muted">
+                    {pos.period !== exp.period && (
+                      <p class="font-mono text-xs text-muted">{pos.period}</p>
+                    )}
+                    {pos.title && (
+                      <p class="mt-1 text-sm font-medium">{pos.title}</p>
+                    )}
+                    <p class="mt-1 text-sm leading-relaxed">
                       {pos.description}
                     </p>
                     {pos.techStack && (
